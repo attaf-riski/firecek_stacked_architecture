@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "536642374050",
+    "firebase_url": "https://test-29074.firebaseio.com",
+    "project_id": "test-29074",
+    "storage_bucket": "test-29074.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536642374050:android:a31349732fc67b09994afb",
+        "android_client_info": {
+          "package_name": "com.example.bromindo_iot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536642374050-m0536kseajgpushkqh7d28868l4q0vsd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrJm_ifULKz0yK6vzjHPKQ-9KUTQdJwlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536642374050-m0536kseajgpushkqh7d28868l4q0vsd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536642374050:android:aa8247eff3296caa994afb",
+        "android_client_info": {
+          "package_name": "com.example.firecek_stacked_architecture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536642374050-m0536kseajgpushkqh7d28868l4q0vsd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrJm_ifULKz0yK6vzjHPKQ-9KUTQdJwlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536642374050-m0536kseajgpushkqh7d28868l4q0vsd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536642374050:android:5fe9fde057e3afa6994afb",
+        "android_client_info": {
+          "package_name": "com.example.flutterlogindemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536642374050-m0536kseajgpushkqh7d28868l4q0vsd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrJm_ifULKz0yK6vzjHPKQ-9KUTQdJwlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536642374050-m0536kseajgpushkqh7d28868l4q0vsd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
