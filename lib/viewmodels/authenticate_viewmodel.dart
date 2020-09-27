@@ -6,6 +6,10 @@ class AuthenticateViewModel extends ReactiveViewModel {
   final AuthToggleState _authToggleState = locator<AuthToggleState>();
   bool get isSignIn => _authToggleState.isSignIn;
 
+  void toChangeView() {
+    _authToggleState.toggleAuth();
+  }
+
   @override
   List<ReactiveServiceMixin> get reactiveServices => [_authToggleState];
 }

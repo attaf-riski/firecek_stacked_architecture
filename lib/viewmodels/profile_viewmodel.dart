@@ -4,15 +4,14 @@ import 'package:firecek_stacked_architecture/services/auth_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class WrapperViewModel extends BaseViewModel {
+class ProfileViewModel extends BaseViewModel {
   final AuthService _authService = locator<AuthService>();
   final NavigationService _navigationService = locator<NavigationService>();
-  Future handleStartUpLogic() async {
-    var hasLoggedInUser = await _authService.isUserLoggedIn();
-    if (hasLoggedInUser) {
-      _navigationService.navigateTo(Routes.homeViewRoute);
-    } else {
-      _navigationService.navigateTo(Routes.authenticateViewRoute);
+
+  Future sigOut() async {
+    var result = await _authService.signOut();
+    if (result == true) {
+      _navigationService.replaceWith(Routes.authenticateViewRoute);
     }
   }
 }

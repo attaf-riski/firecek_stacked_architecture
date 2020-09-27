@@ -1,5 +1,5 @@
 import 'package:firecek_stacked_architecture/shared/loading.dart';
-import 'package:firecek_stacked_architecture/ui/views/wrapper_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/wrapper_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -10,7 +10,7 @@ class WrapperView extends StatelessWidget {
     return ViewModelBuilder<WrapperViewModel>.reactive(
         onModelReady: (model) => model.handleStartUpLogic(),
         builder: (context, model, child) => Scaffold(
-              body: Loading(),
+              body: (model.isBusy) ? Loading() : SizedBox(),
             ),
         viewModelBuilder: () => WrapperViewModel());
   }
