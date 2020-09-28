@@ -3,7 +3,7 @@ import 'package:stacked/stacked.dart';
 
 class AuthToggleState with ReactiveServiceMixin {
   //reactive, it is for detect if there exist a change
-  RxValue<bool> _isSignIn = RxValue<bool>(initial: false);
+  RxValue<bool> _isSignIn = RxValue<bool>(initial: true);
 
   AuthToggleState() {
     listenToReactiveValues([_isSignIn]);
