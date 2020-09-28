@@ -33,3 +33,7 @@ const TextStyle buttonTitleTextStyle =
 
 //constant duration transition
 const Duration durationTransition = Duration(milliseconds: 1500);
+
+//constact key for secure storage
+const String emailForBiometric = 'emailForBiometric';
+const String passwordForBiometric = 'passwordForBiometric';

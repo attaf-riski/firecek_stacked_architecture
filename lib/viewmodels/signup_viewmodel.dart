@@ -31,7 +31,10 @@ class SignUpViewModel extends BaseViewModel {
       //stop show loading ui
       setBusy(false);
       _navigationService.replaceWith(Routes.homeViewRoute,
-          arguments: HomeViewArguments(isCheckBiometric: _isCheck));
+          arguments: HomeViewArguments(
+              isCheckBiometric: _isCheck,
+              emailFromAuthenticate: email,
+              passwordFromAuthenticate: password));
     } else if (result is String) {
       //stop show loading ui
       setBusy(false);

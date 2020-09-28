@@ -61,7 +61,10 @@ class Router extends RouterBase {
         final typedArgs = args as HomeViewArguments ?? HomeViewArguments();
         return MaterialPageRoute<dynamic>(
           builder: (context) => HomeView(
-              isCheckBiometric: typedArgs.isCheckBiometric, key: typedArgs.key),
+              emailFromAuthenticate: typedArgs.emailFromAuthenticate,
+              passwordFromAuthenticate: typedArgs.passwordFromAuthenticate,
+              isCheckBiometric: typedArgs.isCheckBiometric,
+              key: typedArgs.key),
           settings: settings,
         );
       default:
@@ -88,7 +91,13 @@ class AuthenticateViewArguments {
 
 //HomeView arguments holder class
 class HomeViewArguments {
+  final String emailFromAuthenticate;
+  final String passwordFromAuthenticate;
   final bool isCheckBiometric;
   final Key key;
-  HomeViewArguments({this.isCheckBiometric, this.key});
+  HomeViewArguments(
+      {this.emailFromAuthenticate,
+      this.passwordFromAuthenticate,
+      this.isCheckBiometric = false,
+      this.key});
 }

@@ -41,6 +41,7 @@ dependencies:
   curved_navigation_bar: ^0.3.4
   flutter_spinkit : "^4.1.2+1"
   animations: ^1.1.1
+  lottie: ^0.4.0+1
   #firebase
   firebase_auth : ^0.15.5+2
   cloud_firestore : ^0.13.4+2
@@ -49,7 +50,11 @@ dependencies:
   firebase_messaging: ^6.0.13
   #security
   local_auth: ^0.6.2+3
-  
+  flutter_secure_storage: ^3.3.3
+  #connectivity
+  pull_to_refresh: ^1.4.5
+  connectivity: ^0.4.8+2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -68,8 +73,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/lottie/no_conn.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
