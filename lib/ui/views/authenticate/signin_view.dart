@@ -45,11 +45,24 @@ class SignInView extends StatelessWidget {
                   textInputAction: TextInputAction.done,
                   validationMessage: "*Please enter your account password",
                 ),
-                CheckBoxField(
-                  message: 'Login with fingerprint / face recognition',
-                  onChanged: () => model.setIsCek(),
-                  value: model.getIsCheck,
-                ),
+                (model.isHasSetupBiometric)
+                    ? Column(
+                        children: [
+                          IconButton(
+                              icon: Icon(
+                                Icons.fingerprint,
+                                size: 50,
+                              ),
+                              onPressed: model.biometricPopUp),
+                          verticalSpaceSmall,
+                          Text('Login with fingerprint / face recognition'),
+                        ],
+                      )
+                    : CheckBoxField(
+                        message: 'Login with fingerprint / face recognition',
+                        onChanged: () => model.setIsCek(),
+                        value: model.isCheck,
+                      ),
                 verticalSpaceLarge,
                 Container(
                     height: 50,
@@ -62,7 +75,8 @@ class SignInView extends StatelessWidget {
                         ),
                         onPressed: () {
                           model.signIn(
-                              _emailController.text, _passwordController.text);
+                              email: _emailController.text,
+                              password: _passwordController.text);
                         })),
               ],
             ),
