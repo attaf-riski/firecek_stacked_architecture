@@ -50,11 +50,14 @@ dependencies:
   firebase_messaging: ^6.0.13
   #security
   local_auth: ^0.6.2+3
-  flutter_secure_storage: ^3.3.3
   #connectivity
   pull_to_refresh: ^1.4.5
   connectivity: ^0.4.8+2
-
+  #local storage
+  shared_preferences: ^0.5.10
+  flutter_secure_storage: ^3.3.3
+  #unit-test
+  mockito:
 dev_dependencies:
   flutter_test:
     sdk: flutter

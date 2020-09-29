@@ -39,6 +39,7 @@ class SignUpViewModel extends BaseViewModel {
       //stop show loading ui
       setBusy(false);
       await _dialogService.showDialog(
+        buttonTitle: 'Ok',
         title: 'Register Failed',
         description: result,
         dialogPlatform: DialogPlatform.Material,

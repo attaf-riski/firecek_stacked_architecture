@@ -35,5 +35,6 @@ const TextStyle buttonTitleTextStyle =
 const Duration durationTransition = Duration(milliseconds: 1500);
 
 //constact key for secure storage
-const String emailForBiometric = 'emailForBiometric';
-const String passwordForBiometric = 'passwordForBiometric';
+const String EMAILFORBIOMETRIC = 'emailForBiometric';
+const String PASSWORDFORBIOMETRIC = 'passwordForBiometric';
+const String HASSETUPBIOMETRIC = 'hasSetupBiometric';

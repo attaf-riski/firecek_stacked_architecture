@@ -4,6 +4,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'app/locator.dart';
 
 void main(List<String> args) {
+  WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
   runApp(MyApp());
 }

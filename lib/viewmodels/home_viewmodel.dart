@@ -1,5 +1,6 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/services/biometric_service.dart';
+import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/secure_storage_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:local_auth/local_auth.dart';
@@ -12,7 +13,8 @@ class HomeViewModel extends IndexTrackingViewModel {
   final SecureStorageService _secureStorageService =
       locator<SecureStorageService>();
   final DialogService _dialogService = locator<DialogService>();
-  final NavigationService _navigationService = locator<NavigationService>();
+  final LocalStorageService _localStorageService =
+      locator<LocalStorageService>();
 
   //boolean for isAuthenticate or not
   bool _isAuthenticate = false;
@@ -26,10 +28,14 @@ class HomeViewModel extends IndexTrackingViewModel {
     _isAuthenticate =
         await _biometricService.authenticationWithBiometric(_biometricTypes);
     if (_isAuthenticate) {
-      _secureStorageService.emailBiometric = emailFromAuthenticate;
-      _secureStorageService.passwordBiometric = passwordFromAuthenticate;
+      await _secureStorageService.setEmailBiometric(emailFromAuthenticate);
+      await _secureStorageService
+          .setPasswordBiometric(passwordFromAuthenticate);
+      //set the isHasSetupBiometric to true
+      _localStorageService.hasSetupBiometric = true;
     } else {
       _dialogService.showDialog(
+          buttonTitle: 'Ok',
           title: 'Sorry',
           description:
               'Your biometric authenticate has failed.\nPlease try again in settings',
