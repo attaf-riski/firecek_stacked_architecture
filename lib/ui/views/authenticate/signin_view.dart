@@ -1,6 +1,6 @@
 import 'package:firecek_stacked_architecture/shared/loading.dart';
 import 'package:firecek_stacked_architecture/shared/ui_helpers.dart';
-import 'package:firecek_stacked_architecture/viewmodels/signin_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/authenticate/signin_viewmodel.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/checkbox_field.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/input_field.dart';
 import 'package:flutter/material.dart';
