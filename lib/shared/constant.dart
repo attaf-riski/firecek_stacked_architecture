@@ -7,7 +7,15 @@ BoxDecoration fieldDecortaion = BoxDecoration(
 
 BoxDecoration disabledFieldDecortaion = BoxDecoration(
     borderRadius: BorderRadius.circular(5), color: Colors.grey[100]);
+BoxDecoration profileCardDecortaion = BoxDecoration(
+  boxShadow: [
+    BoxShadow(blurRadius: 10, color: Colors.black45, offset: Offset(0, 5))
+  ],
+  borderRadius: BorderRadius.circular(20),
+  color: Colors.white,
+);
 
+//input decoraion
 const inputDecoration = InputDecoration(
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.white, width: 2.0),
@@ -31,6 +39,10 @@ const EdgeInsets largeFieldPadding =
 const TextStyle buttonTitleTextStyle =
     const TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
 
+const TextStyle profileCardTextStyle = TextStyle(
+  color: Colors.black,
+  fontSize: 20,
+);
 //constant duration transition
 const Duration durationTransition = Duration(milliseconds: 1500);
 

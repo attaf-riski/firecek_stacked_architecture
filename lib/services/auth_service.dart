@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firecek_stacked_architecture/models/user.dart';
 import 'package:flutter/foundation.dart';
 
 class AuthService {
@@ -9,6 +10,12 @@ class AuthService {
   Future<bool> isUserLoggedIn() async {
     var user = await _firebaseAuth.currentUser();
     return user != null;
+  }
+
+  //get user uid and email information
+  Future<User> get userUIDAndEmail async {
+    var result = await _firebaseAuth.currentUser();
+    return User(uid: result.uid, email: result.email);
   }
 
   //signin to firebase

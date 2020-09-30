@@ -1,10 +1,10 @@
 import 'package:animations/animations.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/statefull_wrapper.dart';
-import 'package:firecek_stacked_architecture/viewmodels/home_viewmodel.dart';
-import 'package:firecek_stacked_architecture/ui/views/home/myproduct_view.dart';
-import 'package:firecek_stacked_architecture/ui/views/home/product_view.dart';
-import 'package:firecek_stacked_architecture/ui/views/home/profile_view.dart';
+import 'package:firecek_stacked_architecture/viewmodels/home/home_viewmodel.dart';
+import 'package:firecek_stacked_architecture/ui/views/menuhome/myproduct_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/menuhome/product_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/menuhome/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:stacked/stacked.dart';

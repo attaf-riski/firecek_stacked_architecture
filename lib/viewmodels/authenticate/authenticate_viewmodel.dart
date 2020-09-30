@@ -24,7 +24,7 @@ class AuthenticateViewModel extends ReactiveViewModel {
   ///2. reactive value
   ///3. kita tinggal ambil status is offline saja
   //state for check is offline or not
-  static bool _isOffline = false;
+  bool _isOffline = false;
   //is Offline getter
   bool get isOffline => _isOffline;
   set isOffline(bool value) {
@@ -32,11 +32,9 @@ class AuthenticateViewModel extends ReactiveViewModel {
     notifyListeners();
   }
 
-  StreamSubscription _streamToConnectivityService;
   //inisialisasi in the first
   void initialise() {
-    _streamToConnectivityService =
-        _connectivityService.stream.listen((incomingData) {
+    _connectivityService.stream.listen((incomingData) {
       if (incomingData == ConnectivityStatus.Offline) {
         isOffline = true;
       } else {
@@ -53,7 +51,6 @@ class AuthenticateViewModel extends ReactiveViewModel {
 
   //backbutton
   Future<bool> backButton() async {
-    await _streamToConnectivityService.cancel();
     var result = await _dialogService.showConfirmationDialog(
         cancelTitle: 'Cancel',
         confirmationTitle: 'Exit',

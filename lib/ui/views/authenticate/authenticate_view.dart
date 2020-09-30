@@ -4,7 +4,7 @@ import 'package:firecek_stacked_architecture/ui/views/authenticate/signup_view.d
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:stacked/stacked.dart';
-import '../../../viewmodels/authenticate_viewmodel.dart';
+import '../../../viewmodels/authenticate/authenticate_viewmodel.dart';
 import 'package:animations/animations.dart';
 
 class AuthenticateView extends StatelessWidget {
