@@ -37,7 +37,7 @@ class HomeView extends StatelessWidget {
           child: Scaffold(
               body: SmartRefresher(
                 child: PageTransitionSwitcher(
-                  duration: durationTransition,
+                  duration: slowDurationTransition,
                   reverse: true,
                   transitionBuilder: (
                     Widget child,

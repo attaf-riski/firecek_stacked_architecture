@@ -1,12 +1,10 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/models/myproduct.dart';
 import 'package:firecek_stacked_architecture/services/realtime_db_service.dart';
-import 'package:firecek_stacked_architecture/shared/constant.dart';
-import 'package:firecek_stacked_architecture/ui/views/myproduct/watertank_monitoring_detail_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class WaterTankMonitoringTileViewModel extends BaseViewModel {
+class WatertankMonitoringDetailViewModel extends BaseViewModel {
   final RealtimeDBService _realtimeDBService = locator<RealtimeDBService>();
   final NavigationService _navigationService = locator<NavigationService>();
   //watertankmonitoring data
@@ -27,14 +25,9 @@ class WaterTankMonitoringTileViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  //push to detail
-  Future pushToDetail() async {
-    await _navigationService.navigateWithTransition(
-        WaterTankMonitoringDetailView(
-          productKey: _productKey,
-        ),
-        duration: fastDurationTransition,
-        transition: 'rightToLeft');
+  //backbutton
+  void backButton() {
+    _navigationService.back();
   }
 
   //stream

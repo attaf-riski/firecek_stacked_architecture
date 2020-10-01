@@ -43,8 +43,18 @@ const TextStyle profileCardTextStyle = TextStyle(
   color: Colors.black,
   fontSize: 20,
 );
+
+const TextStyle textStyleJudul = TextStyle(fontSize: 13.0, fontFamily: 'Arial');
+const TextStyle textStyleAngka =
+    TextStyle(color: Colors.black, fontSize: 25.0, fontFamily: 'Arial_Black');
+const TextStyle textStyleButton =
+    TextStyle(color: Colors.black, fontSize: 25.0, fontFamily: 'Arial');
+
 //constant duration transition
-const Duration durationTransition = Duration(milliseconds: 1500);
+const Duration slowDurationTransition = Duration(milliseconds: 1500);
+const Duration fastDurationTransition = Duration(milliseconds: 500);
+//constant water change duration
+const Duration waterChange = Duration(milliseconds: 2000);
 
 //constact key for secure storage
 const String EMAILFORBIOMETRIC = 'emailForBiometric';
