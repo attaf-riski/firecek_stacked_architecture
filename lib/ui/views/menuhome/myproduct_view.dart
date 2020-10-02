@@ -1,14 +1,14 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/shared/loading.dart';
-import 'package:firecek_stacked_architecture/ui/views/myproduct/watertank_monitoring_tile_view.dart';
-import 'package:firecek_stacked_architecture/viewmodels/menuhome/myproduct_viewmodel.dart';
+import 'package:firecek_stacked_architecture/ui/views/myproduct/watertankmonitor/watertank_monitoring_tile_view.dart';
+import 'package:firecek_stacked_architecture/viewmodels/menuhome/menu_home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class MyProductView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<MyProductViewModel>.reactive(
+    return ViewModelBuilder<MenuHomeViewModel>.reactive(
         builder: (context, model, child) => (model.isBusy)
             ? Loading()
             : Container(
@@ -34,6 +34,6 @@ class MyProductView extends StatelessWidget {
         disposeViewModel: false,
         initialiseSpecialViewModelsOnce: true,
         onModelReady: (model) => model.listenToUserData(),
-        viewModelBuilder: () => locator<MyProductViewModel>());
+        viewModelBuilder: () => locator<MenuHomeViewModel>());
   }
 }

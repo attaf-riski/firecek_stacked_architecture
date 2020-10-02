@@ -1,14 +1,14 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/shared/loading.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/profile_card.dart';
-import 'package:firecek_stacked_architecture/viewmodels/menuhome/profile_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/menuhome/menu_home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<ProfileViewModel>.reactive(
+    return ViewModelBuilder<MenuHomeViewModel>.reactive(
       disposeViewModel: false,
       builder: (context, model, child) => (model.isBusy)
           ? Loading()
@@ -34,7 +34,7 @@ class ProfileView extends StatelessWidget {
             ),
       initialiseSpecialViewModelsOnce: true,
       onModelReady: (model) => model.listenToUserData(),
-      viewModelBuilder: () => locator<ProfileViewModel>(),
+      viewModelBuilder: () => locator<MenuHomeViewModel>(),
     );
   }
 }

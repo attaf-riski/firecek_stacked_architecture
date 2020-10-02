@@ -1,7 +1,7 @@
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:flutter/material.dart';
 
-class ItemMenuMyProductdetail extends StatelessWidget {
+class ItemWaterTankMonitordetail extends StatelessWidget {
   final String title;
   final bool isNeedBackground;
   final List<String> content;
@@ -10,7 +10,7 @@ class ItemMenuMyProductdetail extends StatelessWidget {
   final Color cardColor;
   final Color fontColor;
   final double fontSize;
-  ItemMenuMyProductdetail({
+  ItemWaterTankMonitordetail({
     this.fontSize,
     this.fontColor = Colors.black,
     this.cardColor,

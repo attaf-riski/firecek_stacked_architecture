@@ -1,11 +1,11 @@
 import 'package:firecek_stacked_architecture/shared/enums.dart';
 import 'package:flutter/material.dart';
 
-class TopBackGroundMyProductDetail extends StatelessWidget {
+class TopBackGroundWaterTankMonitorDetail extends StatelessWidget {
   final ConnectivityStatus connectivityStatus;
   final bool waterTankMonitorStatus;
   final Function backButton;
-  TopBackGroundMyProductDetail(
+  TopBackGroundWaterTankMonitorDetail(
       {this.backButton,
       this.connectivityStatus = ConnectivityStatus.Cellular,
       this.waterTankMonitorStatus = false});

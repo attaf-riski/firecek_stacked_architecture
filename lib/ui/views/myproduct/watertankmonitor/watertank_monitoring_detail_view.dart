@@ -1,8 +1,8 @@
 import 'package:firecek_stacked_architecture/shared/loading.dart';
-import 'package:firecek_stacked_architecture/ui/views/myproduct/menu_myproduct_detail_view.dart';
-import 'package:firecek_stacked_architecture/ui/widgets/top_background_my_product_detail.dart';
-import 'package:firecek_stacked_architecture/ui/widgets/watertankmonitor_bar.dart';
-import 'package:firecek_stacked_architecture/viewmodels/myproduct/watertank_monitoring_detail_viewmodel.dart';
+import 'package:firecek_stacked_architecture/ui/views/myproduct/watertankmonitor/menu_watertankmonitor_detail_view.dart';
+import 'package:firecek_stacked_architecture/ui/widgets/watertankmonitor/top_background_watertankmonitor_detail.dart';
+import 'package:firecek_stacked_architecture/ui/widgets/watertankmonitor/watertankmonitor_bar.dart';
+import 'package:firecek_stacked_architecture/viewmodels/myproduct/watertankmonitor/watertank_monitoring_detail_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -50,7 +50,7 @@ class WaterTankMonitoringDetailView extends StatelessWidget {
                       return ListView(
                         children: [
                           SizedBox(
-                              child: TopBackGroundMyProductDetail(
+                              child: TopBackGroundWaterTankMonitorDetail(
                                 waterTankMonitorStatus:
                                     model.waterTankMonitor.waterTank,
                                 backButton: model.backButton,
@@ -63,7 +63,8 @@ class WaterTankMonitoringDetailView extends StatelessWidget {
                                 waterColorOppacity: waterColorOppacity,
                                 ratio: ratio,
                               ),
-                              MenuMyProductDetailView(
+                              MenuWaterTankMonitorDetailView(
+                                productKey: model.productKey,
                                 waterTankMonitor: model.waterTankMonitor,
                               )
                             ]),

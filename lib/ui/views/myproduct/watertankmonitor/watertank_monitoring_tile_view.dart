@@ -1,6 +1,5 @@
-import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/shared/loading.dart';
-import 'package:firecek_stacked_architecture/viewmodels/myproduct/watertank_monitoring_tile_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/myproduct/watertankmonitor/watertank_monitoring_tile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 

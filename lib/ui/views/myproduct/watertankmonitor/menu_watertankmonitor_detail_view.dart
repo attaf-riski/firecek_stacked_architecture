@@ -1,14 +1,15 @@
 import 'package:firecek_stacked_architecture/models/myproduct.dart';
 import 'package:firecek_stacked_architecture/shared/ui_helpers.dart';
-import 'package:firecek_stacked_architecture/ui/widgets/item_menu_myproduct_detail.dart';
-import 'package:firecek_stacked_architecture/viewmodels/myproduct/menu_myproduct_detail_viewmodel.dart';
+import 'package:firecek_stacked_architecture/ui/widgets/watertankmonitor/item_menu_watertankmonitor_detail.dart';
+import 'package:firecek_stacked_architecture/viewmodels/myproduct/watertankmonitor/menu_watertankmonitor_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
-class MenuMyProductDetailView extends StatelessWidget {
+class MenuWaterTankMonitorDetailView extends StatelessWidget {
+  final String productKey;
   final WaterTankMonitor waterTankMonitor;
-  MenuMyProductDetailView({this.waterTankMonitor});
+  MenuWaterTankMonitorDetailView({this.productKey, this.waterTankMonitor});
   @override
   Widget build(BuildContext context) {
     ///////////for status//////////////
@@ -42,18 +43,18 @@ class MenuMyProductDetailView extends StatelessWidget {
     String jockeyStatus =
         (waterTankMonitor.jockie) ? 'JOCKEY ON' : 'JOCKEY OFF';
     ///////////boolean to string////////
-    return ViewModelBuilder<MenuMyProductDetailViewModel>.reactive(
+    return ViewModelBuilder<MenuWaterTankMonitorViewModel>.reactive(
       builder: (context, model, child) => Container(
         child: ListView(
           children: [
-            ItemMenuMyProductdetail(
+            ItemWaterTankMonitordetail(
               title: 'Status',
               fontColor: Colors.white,
               content: [status],
               isNeedBackground: true,
               isPumpOrStatusOn: [statusCondition],
             ),
-            ItemMenuMyProductdetail(
+            ItemWaterTankMonitordetail(
               title: 'Pump Status',
               fontColor: Colors.white,
               cardHeight: 175.0,
@@ -65,15 +66,15 @@ class MenuMyProductDetailView extends StatelessWidget {
                 waterTankMonitor.electric
               ],
             ),
-            ItemMenuMyProductdetail(
+            ItemWaterTankMonitordetail(
               title: 'Surface Height',
               content: [waterTankMonitor.distance.toString() + ' CM'],
             ),
-            ItemMenuMyProductdetail(
+            ItemWaterTankMonitordetail(
               title: 'Water Percentage',
               content: [(ratio * 100).toStringAsFixed(0) + ' %'],
             ),
-            ItemMenuMyProductdetail(
+            ItemWaterTankMonitordetail(
               title: 'Volume',
               content: [(volume.format(waterTankMonitor.volume / 100)) + ' M3'],
             ),
@@ -82,7 +83,7 @@ class MenuMyProductDetailView extends StatelessWidget {
               color: Color(0xffe4f2fd),
               child: InkWell(
                 borderRadius: BorderRadius.circular(10),
-                child: ItemMenuMyProductdetail(
+                child: ItemWaterTankMonitordetail(
                   cardColor: Colors.transparent,
                   content: ['Settings'],
                 ),
@@ -100,12 +101,14 @@ class MenuMyProductDetailView extends StatelessWidget {
               color: Color(0xffe4f2fd),
               child: InkWell(
                 borderRadius: BorderRadius.circular(10),
-                child: ItemMenuMyProductdetail(
+                child: ItemWaterTankMonitordetail(
                   cardColor: Colors.transparent,
                   content: ['History'],
                 ),
                 splashColor: Color(0xffbbdefa),
-                onTap: () {},
+                onTap: () async {
+                  await model.pushToHistory();
+                },
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
@@ -116,7 +119,7 @@ class MenuMyProductDetailView extends StatelessWidget {
               color: Color(0xffe4f2fd),
               child: InkWell(
                 borderRadius: BorderRadius.circular(10),
-                child: ItemMenuMyProductdetail(
+                child: ItemWaterTankMonitordetail(
                   fontSize: 12,
                   cardColor: Colors.transparent,
                   content: ['Enable Notification'],
@@ -133,7 +136,7 @@ class MenuMyProductDetailView extends StatelessWidget {
               color: Colors.red,
               child: InkWell(
                 borderRadius: BorderRadius.circular(10),
-                child: ItemMenuMyProductdetail(
+                child: ItemWaterTankMonitordetail(
                   fontColor: Colors.white,
                   content: ['Delete Product'],
                   cardColor: Colors.transparent,
@@ -150,8 +153,11 @@ class MenuMyProductDetailView extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.5,
         margin: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 30.0),
       ),
-      viewModelBuilder: () => MenuMyProductDetailViewModel(),
-      onModelReady: (model) => model.waterTankMonitor = waterTankMonitor,
+      viewModelBuilder: () => MenuWaterTankMonitorViewModel(),
+      onModelReady: (model) {
+        model.productKey = productKey;
+        model.waterTankMonitor = waterTankMonitor;
+      },
     );
   }
 }

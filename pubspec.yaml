@@ -83,6 +83,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/lottie/no_conn.json
+    - assets/lottie/empty.json
     - assets/images/header.jpg
     - assets/images/alert.png
   #   - images/a_dot_ham.jpeg

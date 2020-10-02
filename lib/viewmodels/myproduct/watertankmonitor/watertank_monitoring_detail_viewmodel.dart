@@ -20,6 +20,7 @@ class WatertankMonitoringDetailViewModel extends BaseViewModel {
 
   //product key and its setter
   String _productKey;
+  get productKey => _productKey;
   set productKey(String productKey) {
     _productKey = productKey;
     notifyListeners();

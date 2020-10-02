@@ -18,7 +18,7 @@ class AuthenticateView extends StatelessWidget {
         child: Scaffold(
           body: SmartRefresher(
             child: (model.isOffline)
-                ? NoConnection()
+                ? LottieMessage()
                 : ListView(
                     children: [
                       Padding(
