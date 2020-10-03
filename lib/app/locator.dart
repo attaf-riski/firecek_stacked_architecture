@@ -9,6 +9,7 @@ import 'package:firecek_stacked_architecture/services/realtime_db_service.dart';
 import 'package:firecek_stacked_architecture/services/secure_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/viewmodels/menuhome/menu_home_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/menuhome/product_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -36,4 +37,5 @@ Future setupLocator() async {
   locator.registerLazySingleton(() => BarcodeService());
   //view model
   locator.registerLazySingleton(() => MenuHomeViewModel());
+  locator.registerLazySingleton(() => ProductViewModel());
 }

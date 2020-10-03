@@ -116,16 +116,25 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
             ),
             verticalSpaceTiny,
             Material(
-              color: Color(0xffe4f2fd),
+              color: (model.isNotificationEnabled) ? Colors.red : Colors.green,
               child: InkWell(
                 borderRadius: BorderRadius.circular(10),
                 child: ItemWaterTankMonitordetail(
+                  fontColor: (model.isNotificationEnabled)
+                      ? Colors.white
+                      : Colors.black,
                   fontSize: 12,
                   cardColor: Colors.transparent,
-                  content: ['Enable Notification'],
+                  content: [
+                    (model.isNotificationEnabled)
+                        ? 'Disable Notification'
+                        : 'Enable Notification'
+                  ],
                 ),
                 splashColor: Color(0xffbbdefa),
-                onTap: () {},
+                onTap: () {
+                  model.toggleEnableAndDisableNotification();
+                },
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
@@ -142,7 +151,9 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
                   cardColor: Colors.transparent,
                 ),
                 splashColor: Color(0xffbbdefa),
-                onTap: () {},
+                onTap: () {
+                  model.deleteProduct();
+                },
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
@@ -157,6 +168,7 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
       onModelReady: (model) {
         model.productKey = productKey;
         model.waterTankMonitor = waterTankMonitor;
+        model.readLocalStorage();
       },
     );
   }

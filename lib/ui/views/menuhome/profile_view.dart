@@ -9,7 +9,6 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<MenuHomeViewModel>.reactive(
-      disposeViewModel: false,
       builder: (context, model, child) => (model.isBusy)
           ? Loading()
           : SizedBox(
@@ -32,6 +31,7 @@ class ProfileView extends StatelessWidget {
                 ],
               ),
             ),
+      disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
       onModelReady: (model) => model.listenToUserData(),
       viewModelBuilder: () => locator<MenuHomeViewModel>(),

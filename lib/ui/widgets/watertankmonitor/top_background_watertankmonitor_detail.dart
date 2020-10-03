@@ -1,3 +1,4 @@
+import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/shared/enums.dart';
 import 'package:flutter/material.dart';
 
@@ -28,11 +29,7 @@ class TopBackGroundWaterTankMonitorDetail extends StatelessWidget {
                 left: (MediaQuery.of(context).size.width / 3.5), top: 5.0),
             child: Text(
               (waterTankMonitorStatus) ? 'WELMO' : 'OFFLINE',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Futura',
-                fontSize: 50,
-              ),
+              style: welmo,
             ),
           ),
         ],

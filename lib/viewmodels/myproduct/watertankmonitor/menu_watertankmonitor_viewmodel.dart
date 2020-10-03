@@ -1,7 +1,13 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/models/history.dart';
 import 'package:firecek_stacked_architecture/models/myproduct.dart';
+import 'package:firecek_stacked_architecture/models/user.dart';
+import 'package:firecek_stacked_architecture/models/user_data.dart';
+import 'package:firecek_stacked_architecture/services/auth_service.dart';
 import 'package:firecek_stacked_architecture/services/barcode_service.dart';
+import 'package:firecek_stacked_architecture/services/fcm_service.dart';
+import 'package:firecek_stacked_architecture/services/firestore_service.dart';
+import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/ui/views/myproduct/history_view.dart';
 import 'package:firecek_stacked_architecture/ui/views/myproduct/watertankmonitor/settings_watertankmonitor_detail_view.dart';
@@ -13,6 +19,11 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
   BarcodeService _barcodeService = locator<BarcodeService>();
   SnackbarService _snackbarService = locator<SnackbarService>();
   NavigationService _navigationService = locator<NavigationService>();
+  LocalStorageService _localStorageService = locator<LocalStorageService>();
+  PushNotificationService _pushNotificationService =
+      locator<PushNotificationService>();
+  FirestoreService _firestoreService = locator<FirestoreService>();
+  AuthService _authService = locator<AuthService>();
 
   //product key and its setter
   String _productKey;
@@ -50,7 +61,7 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
             duration: fastDurationTransition,
             transition: 'rightToLeft');
       } else {
-        _snackbarService.showSnackbar(message: 'Scan fail.');
+        _snackbarService.showSnackbar(message: 'Scan has been canceled.');
       }
       return false;
     }
@@ -95,5 +106,54 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
         ),
         duration: fastDurationTransition,
         transition: 'rightToLeft');
+  }
+
+  //is notification enable or not
+  bool _isNotificationEnabled = true;
+  get isNotificationEnabled => _isNotificationEnabled;
+
+  //set _isNotificationEnabled like notification status in local storage
+  readLocalStorage() {
+    _isNotificationEnabled =
+        _localStorageService.isSubscribeToThisTopic(productKey);
+    notifyListeners();
+  }
+
+  //toggle for notification
+  toggleEnableAndDisableNotification() {
+    //set subscribe/unsubcribe to fcm
+    (isNotificationEnabled)
+        ? _pushNotificationService.unsubscribeToTopic(productKey)
+        : _pushNotificationService.subscribeToTopic(productKey);
+    //set notification menjadi kebalikan
+    _localStorageService.setIsSubscribeToThisTopic(
+        productKey, !_isNotificationEnabled);
+    readLocalStorage();
+  }
+
+  //delete product in myProduct list current user
+  User user;
+  deleteProduct() async {
+    user = await _authService.userUIDAndEmail;
+    var result = await _dialogService.showConfirmationDialog(
+        cancelTitle: 'Cancel',
+        confirmationTitle: 'Delete',
+        dialogPlatform: DialogPlatform.Material,
+        title: 'Are you Sure?',
+        description: 'Do you want to delete ' + _waterTankMonitor.name + ' ?');
+    if (result.confirmed) {
+      //delete
+      await _firestoreService
+          .deleteProductFromUser(user.uid, productKey + '_WaterTank')
+          .whenComplete(() {
+        //navigate to menu myproduct
+        _navigationService.popUntil((route) => route.isFirst);
+        //show snackbar
+        _snackbarService.showSnackbar(
+            message: _waterTankMonitor.name + ' has been deleted.');
+      });
+    } else {
+      return false;
+    }
   }
 }

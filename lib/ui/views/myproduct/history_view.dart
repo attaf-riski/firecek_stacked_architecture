@@ -11,7 +11,6 @@ class HistoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(productHistory);
     return ViewModelBuilder<HistoryViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         body: ListView(

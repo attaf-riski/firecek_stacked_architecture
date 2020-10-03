@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 
@@ -31,8 +32,9 @@ class PushNotificationService {
     return showSimpleNotification(
       Text(title),
       subtitle: Text(content),
-      background: Colors.purple,
-      autoDismiss: false,
+      background: Colors.red,
+      duration: notificationShowTime,
+      autoDismiss: true,
       trailing: Builder(builder: (context) {
         return FlatButton(
             textColor: Colors.yellow,
@@ -42,5 +44,15 @@ class PushNotificationService {
             child: Text('Dismiss'));
       }),
     );
+  }
+
+  Future subscribeToTopic(String topic) async {
+    print('(TRACE) PushNotificationService:subscribeToTopic. topic: $topic');
+    await _fcm.subscribeToTopic(topic);
+  }
+
+  Future unsubscribeToTopic(String topic) async {
+    print('(TRACE) PushNotificationService:unsubscribeToTopic. topic: $topic');
+    await _fcm.unsubscribeFromTopic(topic);
   }
 }
