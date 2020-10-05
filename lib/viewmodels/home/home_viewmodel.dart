@@ -1,5 +1,7 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/services/biometric_service.dart';
+import 'package:firecek_stacked_architecture/services/connectivity_service.dart';
+import 'package:firecek_stacked_architecture/services/home_index_service.dart';
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/secure_storage_service.dart';
 import 'package:flutter/foundation.dart';
@@ -7,7 +9,7 @@ import 'package:local_auth/local_auth.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class HomeViewModel extends IndexTrackingViewModel {
+class HomeViewModel extends ReactiveViewModel {
   //service intance
   final BiometricService _biometricService = locator<BiometricService>();
   final SecureStorageService _secureStorageService =
@@ -15,6 +17,15 @@ class HomeViewModel extends IndexTrackingViewModel {
   final DialogService _dialogService = locator<DialogService>();
   final LocalStorageService _localStorageService =
       locator<LocalStorageService>();
+  final HomeIndexService _homeIndexService = locator<HomeIndexService>();
+  final ConnectivityService _connectivityService =
+      locator<ConnectivityService>();
+  //get and set index
+  int get index => _homeIndexService.index;
+
+  void setIndex(int index) {
+    _homeIndexService.setIndex(index);
+  }
 
   //boolean for isAuthenticate or not
   bool _isAuthenticate = false;
@@ -56,4 +67,11 @@ class HomeViewModel extends IndexTrackingViewModel {
     }
     return false;
   }
+
+  //is Offline getter
+  bool get isOffline => _connectivityService.isOffline;
+
+  @override
+  List<ReactiveServiceMixin> get reactiveServices =>
+      [_homeIndexService, _connectivityService];
 }

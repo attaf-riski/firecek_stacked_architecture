@@ -2,7 +2,6 @@ import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/models/history.dart';
 import 'package:firecek_stacked_architecture/models/myproduct.dart';
 import 'package:firecek_stacked_architecture/models/user.dart';
-import 'package:firecek_stacked_architecture/models/user_data.dart';
 import 'package:firecek_stacked_architecture/services/auth_service.dart';
 import 'package:firecek_stacked_architecture/services/barcode_service.dart';
 import 'package:firecek_stacked_architecture/services/fcm_service.dart';
@@ -120,15 +119,18 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
   }
 
   //toggle for notification
-  toggleEnableAndDisableNotification() {
+  toggleEnableAndDisableNotification() async {
+    bool result = false;
     //set subscribe/unsubcribe to fcm
     (isNotificationEnabled)
-        ? _pushNotificationService.unsubscribeToTopic(productKey)
-        : _pushNotificationService.subscribeToTopic(productKey);
+        ? result = await _pushNotificationService.unsubscribeToTopic(productKey)
+        : result = await _pushNotificationService.subscribeToTopic(productKey);
     //set notification menjadi kebalikan
-    _localStorageService.setIsSubscribeToThisTopic(
-        productKey, !_isNotificationEnabled);
-    readLocalStorage();
+    if (result) {
+      _localStorageService.setIsSubscribeToThisTopic(
+          productKey, !_isNotificationEnabled);
+      readLocalStorage();
+    }
   }
 
   //delete product in myProduct list current user
@@ -143,15 +145,31 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
         description: 'Do you want to delete ' + _waterTankMonitor.name + ' ?');
     if (result.confirmed) {
       //delete
-      await _firestoreService
-          .deleteProductFromUser(user.uid, productKey + '_WaterTank')
-          .whenComplete(() {
+      var result = await _firestoreService.deleteProductFromUser(
+          user.uid, productKey + '_WaterTank');
+      if (result == true) {
+        //unsubscribe
+        bool result =
+            await _pushNotificationService.unsubscribeToTopic(productKey);
+        //delete status in local storage
+        if (result) {
+          _localStorageService.setIsSubscribeToThisTopic(productKey, false);
+          readLocalStorage();
+        }
         //navigate to menu myproduct
         _navigationService.popUntil((route) => route.isFirst);
         //show snackbar
         _snackbarService.showSnackbar(
             message: _waterTankMonitor.name + ' has been deleted.');
-      });
+        //refresh
+        notifyListeners();
+        return true;
+      } else {
+        //show snackbar
+        _snackbarService.showSnackbar(
+            message:
+                _waterTankMonitor.name + ' Deleting product has been failed.');
+      }
     } else {
       return false;
     }

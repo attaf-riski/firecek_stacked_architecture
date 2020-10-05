@@ -59,6 +59,7 @@ class WaterTankMonitoringDetailView extends StatelessWidget {
                           SizedBox(
                             child: Row(children: [
                               WaterTankMonitorBar(
+                                height: bottomheight,
                                 waterColor: waterColor,
                                 waterColorOppacity: waterColorOppacity,
                                 ratio: ratio,

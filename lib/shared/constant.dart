@@ -54,6 +54,8 @@ const TextStyle welmo = TextStyle(
   fontFamily: 'Futura',
   fontSize: 50,
 );
+const TextStyle profileTitleTextStyle =
+    const TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
 
 //constant duration transition
 const Duration slowDurationTransition = Duration(milliseconds: 1500);
@@ -64,9 +66,12 @@ const Duration waterChange = Duration(milliseconds: 2000);
 const Duration notificationShowTime = Duration(milliseconds: 10000);
 //constant loading time
 const Duration loadingTime = Duration(milliseconds: 100);
+//constant water change duration
+const Duration noInternetNotif = Duration(milliseconds: 5000);
 
 //constact key for secure storage
 const String EMAILFORBIOMETRIC = 'emailForBiometric';
 const String PASSWORDFORBIOMETRIC = 'passwordForBiometric';
 const String HASSETUPBIOMETRIC = 'hasSetupBiometric';
 const String ISSUBSCRIBETOTHISTOPIC = 'isSubscribeToThisTopic';
+const String CURRENTPASSWORD = 'currentPassword';

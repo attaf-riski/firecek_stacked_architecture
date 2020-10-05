@@ -5,11 +5,13 @@ import 'package:firecek_stacked_architecture/services/biometric_service.dart';
 import 'package:firecek_stacked_architecture/services/connectivity_service.dart';
 import 'package:firecek_stacked_architecture/services/fcm_service.dart';
 import 'package:firecek_stacked_architecture/services/firestore_service.dart';
+import 'package:firecek_stacked_architecture/services/home_index_service.dart';
 import 'package:firecek_stacked_architecture/services/realtime_db_service.dart';
 import 'package:firecek_stacked_architecture/services/secure_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/viewmodels/menuhome/menu_home_viewmodel.dart';
 import 'package:firecek_stacked_architecture/viewmodels/menuhome/product_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/profile/menu_profile_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -35,7 +37,9 @@ Future setupLocator() async {
   locator.registerLazySingleton(() => FirestoreService());
   locator.registerLazySingleton(() => RealtimeDBService());
   locator.registerLazySingleton(() => BarcodeService());
+  locator.registerLazySingleton(() => HomeIndexService());
   //view model
   locator.registerLazySingleton(() => MenuHomeViewModel());
   locator.registerLazySingleton(() => ProductViewModel());
+  locator.registerLazySingleton(() => MenuProfileViewModel());
 }

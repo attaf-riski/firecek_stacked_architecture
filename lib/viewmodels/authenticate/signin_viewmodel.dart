@@ -56,7 +56,8 @@ class SignInViewModel extends BaseViewModel {
       _dialogService.showDialog(
           buttonTitle: 'Ok',
           title: 'Sorry',
-          description: 'Your biometric authenticate has failed.',
+          description:
+              'Your biometric authenticate has failed. Please login manually.',
           dialogPlatform: DialogPlatform.Material);
     }
   }
@@ -70,8 +71,8 @@ class SignInViewModel extends BaseViewModel {
     setBusy(true);
     var result;
     if (loginWithFingerPrint) {
-      var email = await _secureStorageService.emailBiometric;
-      var password = await _secureStorageService.passwordBiometric;
+      email = await _secureStorageService.emailBiometric;
+      password = await _secureStorageService.passwordBiometric;
       result =
           await _authService.sigInWithEmail(email: email, password: password);
     } else {
@@ -80,6 +81,9 @@ class SignInViewModel extends BaseViewModel {
     }
 
     if (result == true) {
+      //set current password
+      //for add fingerprint in settings
+      await _secureStorageService.setCurrentPassword(password);
       //subscribe to all user product
       //take user data from firestore
       User user = await _authService.userUIDAndEmail;

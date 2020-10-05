@@ -47,12 +47,21 @@ class PushNotificationService {
   }
 
   Future subscribeToTopic(String topic) async {
-    print('(TRACE) PushNotificationService:subscribeToTopic. topic: $topic');
-    await _fcm.subscribeToTopic(topic);
+    bool result = true;
+
+    await _fcm.subscribeToTopic(topic).catchError((error) => result = false);
+    print(
+        '(TRACE) PushNotificationService:subscribeToTopic. topic: $topic result: $result');
+    return result;
   }
 
   Future unsubscribeToTopic(String topic) async {
-    print('(TRACE) PushNotificationService:unsubscribeToTopic. topic: $topic');
-    await _fcm.unsubscribeFromTopic(topic);
+    bool result = true;
+    print(
+        '(TRACE) PushNotificationService:unsubscribeToTopic. topic: $topic  result: $result');
+    await _fcm
+        .unsubscribeFromTopic(topic)
+        .catchError((error) => result = false);
+    return result;
   }
 }

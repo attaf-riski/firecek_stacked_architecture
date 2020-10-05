@@ -1,7 +1,6 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/models/product.dart';
 import 'package:firecek_stacked_architecture/services/firestore_service.dart';
-import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:stacked/stacked.dart';
 
 class ProductViewModel extends BaseViewModel {
@@ -15,10 +14,8 @@ class ProductViewModel extends BaseViewModel {
     setBusy(true);
     _firestoreService.listenToProductListRealTime().listen((result) {
       _products = result;
-    });
-    Future.delayed(loadingTime, () {
       notifyListeners();
-      setBusy(false);
     });
+    setBusy(false);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:firecek_stacked_architecture/models/myproduct.dart';
 import 'package:firecek_stacked_architecture/shared/ui_helpers.dart';
+import 'package:firecek_stacked_architecture/ui/widgets/material_inkwell.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/watertankmonitor/item_menu_watertankmonitor_detail.dart';
 import 'package:firecek_stacked_architecture/viewmodels/myproduct/watertankmonitor/menu_watertankmonitor_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -79,85 +80,58 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
               content: [(volume.format(waterTankMonitor.volume / 100)) + ' M3'],
             ),
             verticalSpaceTiny,
-            Material(
-              color: Color(0xffe4f2fd),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(10),
-                child: ItemWaterTankMonitordetail(
-                  cardColor: Colors.transparent,
-                  content: ['Settings'],
-                ),
-                splashColor: Color(0xffbbdefa),
-                onTap: () async {
-                  await model.pushToSetting();
-                },
+            MaterialInkwell(
+              backgroundColor: Color(0xffe4f2fd),
+              borderRadiusValue: 15,
+              child: ItemWaterTankMonitordetail(
+                cardColor: Colors.transparent,
+                content: ['Settings'],
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              onTap: () async => await model.pushToSetting(),
+              splashColor: Color(0xffbbdefa),
             ),
             verticalSpaceTiny,
-            Material(
-              color: Color(0xffe4f2fd),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(10),
-                child: ItemWaterTankMonitordetail(
-                  cardColor: Colors.transparent,
-                  content: ['History'],
-                ),
-                splashColor: Color(0xffbbdefa),
-                onTap: () async {
-                  await model.pushToHistory();
-                },
+            MaterialInkwell(
+              backgroundColor: Color(0xffe4f2fd),
+              borderRadiusValue: 15,
+              child: ItemWaterTankMonitordetail(
+                cardColor: Colors.transparent,
+                content: ['History'],
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              onTap: () async => await model.pushToHistory(),
+              splashColor: Color(0xffbbdefa),
             ),
             verticalSpaceTiny,
-            Material(
-              color: (model.isNotificationEnabled) ? Colors.red : Colors.green,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(10),
-                child: ItemWaterTankMonitordetail(
-                  fontColor: (model.isNotificationEnabled)
-                      ? Colors.white
-                      : Colors.black,
-                  fontSize: 12,
-                  cardColor: Colors.transparent,
-                  content: [
-                    (model.isNotificationEnabled)
-                        ? 'Disable Notification'
-                        : 'Enable Notification'
-                  ],
-                ),
-                splashColor: Color(0xffbbdefa),
-                onTap: () {
-                  model.toggleEnableAndDisableNotification();
-                },
+            MaterialInkwell(
+              backgroundColor:
+                  (model.isNotificationEnabled) ? Colors.red : Colors.green,
+              borderRadiusValue: 15,
+              child: ItemWaterTankMonitordetail(
+                fontColor:
+                    (model.isNotificationEnabled) ? Colors.white : Colors.black,
+                fontSize: 12,
+                cardColor: Colors.transparent,
+                content: [
+                  (model.isNotificationEnabled)
+                      ? 'Disable Notification'
+                      : 'Enable Notification'
+                ],
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              onTap: () async =>
+                  await model.toggleEnableAndDisableNotification(),
+              splashColor: Color(0xffbbdefa),
             ),
             verticalSpaceTiny,
-            Material(
-              color: Colors.red,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(10),
-                child: ItemWaterTankMonitordetail(
-                  fontColor: Colors.white,
-                  content: ['Delete Product'],
-                  cardColor: Colors.transparent,
-                ),
-                splashColor: Color(0xffbbdefa),
-                onTap: () {
-                  model.deleteProduct();
-                },
+            MaterialInkwell(
+              backgroundColor: Colors.red,
+              borderRadiusValue: 15,
+              child: ItemWaterTankMonitordetail(
+                fontColor: Colors.white,
+                content: ['Delete Product'],
+                cardColor: Colors.transparent,
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              onTap: () async => await model.deleteProduct(),
+              splashColor: Color(0xffbbdefa),
             ),
           ],
         ),

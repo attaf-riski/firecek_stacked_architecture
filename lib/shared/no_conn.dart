@@ -21,7 +21,7 @@ class LottieMessage extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 2,
             ),
             verticalSpaceMedium,
-            Text(title ?? 'No Internet')
+            Text(title ?? 'No internet.')
           ],
           mainAxisAlignment: MainAxisAlignment.center,
         ),

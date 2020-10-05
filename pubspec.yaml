@@ -38,7 +38,6 @@ dependencies:
   #inversion of control
   get_it:
   #decoration
-  curved_navigation_bar: ^0.3.4
   flutter_spinkit : "^4.1.2+1"
   animations: ^1.1.1
   lottie: ^0.4.0+1

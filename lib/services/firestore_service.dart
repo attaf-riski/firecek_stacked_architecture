@@ -40,13 +40,30 @@ class FirestoreService {
     return userData;
   }
 
-  //delete array index in users->uid->myProduct
-  Future deleteProductFromUser(String uid, productKey) async {
-    await _usersCollectionReference.document(uid).updateData({
-      "myProduct": FieldValue.arrayRemove([productKey])
+  //addd array index in users->uid->
+  Future addProductToUser(String uid, productKeyAndType) async {
+    var result = false;
+    result = await _usersCollectionReference.document(uid).updateData({
+      "myProduct": FieldValue.arrayUnion([productKeyAndType])
+    }).then((value) {
+      return true;
     });
     print(
-        '(TRACE) FirestoreService:deleteProductFromUser. key: $uid productKey: $productKey');
+        '(TRACE) FirestoreService:addProductToUser. key: $uid productKeyAndType: $productKeyAndType result: $result');
+    return result;
+  }
+
+  //delete array index in users->uid->myProduct
+  Future deleteProductFromUser(String uid, productKey) async {
+    var result = false;
+    result = await _usersCollectionReference.document(uid).updateData({
+      "myProduct": FieldValue.arrayRemove([productKey])
+    }).then((value) {
+      return true;
+    });
+    print(
+        '(TRACE) FirestoreService:deleteProductFromUser. key: $uid productKey: $productKey result: $result');
+    return result;
   }
 
   //listen to stream product list
