@@ -18,7 +18,13 @@ class AuthenticateView extends StatelessWidget {
         child: Scaffold(
           body: SmartRefresher(
             child: (model.isOffline)
-                ? NoConnection()
+                ? Column(
+                    children: [
+                      LottieMessage(
+                        height: MediaQuery.of(context).size.height / 2,
+                      ),
+                    ],
+                  )
                 : ListView(
                     children: [
                       Padding(
@@ -75,7 +81,6 @@ class AuthenticateView extends StatelessWidget {
         onWillPop: model.backButton,
       ),
       viewModelBuilder: () => AuthenticateViewModel(),
-      onModelReady: (model) => model.initialise(),
     );
   }
 }

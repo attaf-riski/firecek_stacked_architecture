@@ -43,10 +43,35 @@ const TextStyle profileCardTextStyle = TextStyle(
   color: Colors.black,
   fontSize: 20,
 );
+
+const TextStyle textStyleJudul = TextStyle(fontSize: 13.0, fontFamily: 'Arial');
+const TextStyle textStyleAngka =
+    TextStyle(color: Colors.black, fontSize: 25.0, fontFamily: 'Arial_Black');
+const TextStyle textStyleButton =
+    TextStyle(color: Colors.black, fontSize: 25.0, fontFamily: 'Arial');
+const TextStyle welmo = TextStyle(
+  color: Colors.white,
+  fontFamily: 'Futura',
+  fontSize: 50,
+);
+const TextStyle profileTitleTextStyle =
+    const TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
+
 //constant duration transition
-const Duration durationTransition = Duration(milliseconds: 1500);
+const Duration slowDurationTransition = Duration(milliseconds: 1500);
+const Duration fastDurationTransition = Duration(milliseconds: 500);
+//constant water change duration
+const Duration waterChange = Duration(milliseconds: 2000);
+//constant water change duration
+const Duration notificationShowTime = Duration(milliseconds: 10000);
+//constant loading time
+const Duration loadingTime = Duration(milliseconds: 100);
+//constant water change duration
+const Duration noInternetNotif = Duration(milliseconds: 5000);
 
 //constact key for secure storage
 const String EMAILFORBIOMETRIC = 'emailForBiometric';
 const String PASSWORDFORBIOMETRIC = 'passwordForBiometric';
 const String HASSETUPBIOMETRIC = 'hasSetupBiometric';
+const String ISSUBSCRIBETOTHISTOPIC = 'isSubscribeToThisTopic';
+const String CURRENTPASSWORD = 'currentPassword';

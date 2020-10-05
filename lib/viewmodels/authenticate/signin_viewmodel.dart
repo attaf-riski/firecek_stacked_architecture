@@ -1,7 +1,11 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/app/router.gr.dart';
+import 'package:firecek_stacked_architecture/models/user.dart';
+import 'package:firecek_stacked_architecture/models/user_data.dart';
 import 'package:firecek_stacked_architecture/services/auth_service.dart';
 import 'package:firecek_stacked_architecture/services/biometric_service.dart';
+import 'package:firecek_stacked_architecture/services/fcm_service.dart';
+import 'package:firecek_stacked_architecture/services/firestore_service.dart';
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/secure_storage_service.dart';
 import 'package:local_auth/local_auth.dart';
@@ -17,6 +21,9 @@ class SignInViewModel extends BaseViewModel {
   final SecureStorageService _secureStorageService =
       locator<SecureStorageService>();
   final BiometricService _biometricService = locator<BiometricService>();
+  final FirestoreService _firestoreService = locator<FirestoreService>();
+  final PushNotificationService _pushNotificationService =
+      locator<PushNotificationService>();
 
   //state for checkbox
   bool _isCheck = false;
@@ -49,7 +56,8 @@ class SignInViewModel extends BaseViewModel {
       _dialogService.showDialog(
           buttonTitle: 'Ok',
           title: 'Sorry',
-          description: 'Your biometric authenticate has failed.',
+          description:
+              'Your biometric authenticate has failed. Please login manually.',
           dialogPlatform: DialogPlatform.Material);
     }
   }
@@ -63,8 +71,8 @@ class SignInViewModel extends BaseViewModel {
     setBusy(true);
     var result;
     if (loginWithFingerPrint) {
-      var email = await _secureStorageService.emailBiometric;
-      var password = await _secureStorageService.passwordBiometric;
+      email = await _secureStorageService.emailBiometric;
+      password = await _secureStorageService.passwordBiometric;
       result =
           await _authService.sigInWithEmail(email: email, password: password);
     } else {
@@ -73,7 +81,28 @@ class SignInViewModel extends BaseViewModel {
     }
 
     if (result == true) {
-      //stop show loading ui
+      //set current password
+      //for add fingerprint in settings
+      await _secureStorageService.setCurrentPassword(password);
+      //subscribe to all user product
+      //take user data from firestore
+      User user = await _authService.userUIDAndEmail;
+      UserData userData =
+          await _firestoreService.userDataFuture(user.uid, user.email);
+      //take list myProduct from user data
+      List productNameForTopic = userData.myProduct;
+      //subscribe to topic with name of product user
+      productNameForTopic.forEach((element) async {
+        List productKey = element.split('_');
+        //product key 0 = productKey
+        //product key 1 = productType
+        //
+        //subscribe to all product in myProduct
+        await _pushNotificationService.subscribeToTopic(productKey[0]);
+        //set button on/off notif in myproduct detail to on all
+        _localStorageService.setIsSubscribeToThisTopic(productKey[0], true);
+      });
+      //stop show loading
       setBusy(false);
       _navigationService.replaceWith(Routes.homeViewRoute,
           arguments: HomeViewArguments(

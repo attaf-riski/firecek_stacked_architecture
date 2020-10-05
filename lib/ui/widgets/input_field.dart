@@ -79,9 +79,10 @@ class _InputFieldState extends State<InputField> {
                     }
                   },
                   onFieldSubmitted: (value) {
-                    widget.fieldFocusNode.unfocus();
                     if (widget.nextFocusNode != null) {
                       widget.nextFocusNode.requestFocus();
+                    } else {
+                      widget.fieldFocusNode.unfocus();
                     }
                   },
                   obscureText: isPassword,

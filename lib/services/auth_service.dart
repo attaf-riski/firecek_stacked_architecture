@@ -75,4 +75,18 @@ class AuthService {
       print(e);
     }
   }
+
+  //re-auhtenticate
+  Future reAuthenticate(String password) async {
+    FirebaseUser user = await _firebaseAuth.currentUser();
+    try {
+      var authCredentials = EmailAuthProvider.getCredential(
+          email: user.email, password: password);
+      var authResult = await user.reauthenticateWithCredential(authCredentials);
+      return authResult.user != null;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 }

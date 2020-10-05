@@ -46,4 +46,11 @@ class LocalStorageService {
   //getter and setter for has setup biometric or not
   bool get hasSetupBiometric => _getFromDisk(HASSETUPBIOMETRIC) ?? false;
   set hasSetupBiometric(bool value) => _saveToDisk(HASSETUPBIOMETRIC, value);
+
+  //getter and setter for is has subcribe to this topic or not
+  bool isSubscribeToThisTopic(String productKey) =>
+      _getFromDisk(ISSUBSCRIBETOTHISTOPIC + productKey) ?? false;
+  void setIsSubscribeToThisTopic(String productKey, bool value) {
+    _saveToDisk(ISSUBSCRIBETOTHISTOPIC + productKey, value);
+  }
 }

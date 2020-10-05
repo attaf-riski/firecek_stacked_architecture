@@ -31,6 +31,14 @@ class SecureStorageService {
     await _saveToDisk(PASSWORDFORBIOMETRIC, password);
   }
 
+  //set and get current password
+  //for add fingerprint in settings
+  Future<String> get currentPassword async =>
+      await _getFromDisk(CURRENTPASSWORD);
+  Future setCurrentPassword(String password) async {
+    await _saveToDisk(CURRENTPASSWORD, password);
+  }
+
   //get/read from disk
   Future<String> _getFromDisk(String key) async {
     var value = await _preferences.read(key: key);
