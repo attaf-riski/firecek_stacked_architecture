@@ -64,7 +64,7 @@ class SignInView extends StatelessWidget {
                         value: model.isCheck,
                       ),
                 verticalSpaceLarge,
-                Container(
+                SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
                     child: RaisedButton(

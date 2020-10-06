@@ -34,7 +34,7 @@ class SignUpView extends StatelessWidget {
                   fieldFocusNode: _emailFocus,
                   nextFocusNode: _passwordFocus,
                   placeholder: 'Email',
-                  validationMessage: "*Please enter your account email address",
+                  validationMessage: "*Please enter your email address.",
                 ),
                 verticalSpaceMedium,
                 InputField(
@@ -43,15 +43,29 @@ class SignUpView extends StatelessWidget {
                   placeholder: 'Password',
                   password: true,
                   textInputAction: TextInputAction.done,
-                  validationMessage: "*Please enter your account password",
+                  validationMessage: "*Please enter 6+ character.",
                 ),
-                CheckBoxField(
-                  message: 'Login with fingerprint / face recognition',
-                  onChanged: () => model.setIsCek(),
-                  value: model.getIsCheck,
-                ),
+                (model.isBiometricHasSetupped)
+                    ? GestureDetector(
+                        child: CheckBoxField(
+                          message:
+                              'Login with fingerprint / face recognition\nhas been used by another account.',
+                          onChanged: () {
+                            model.hasSetupMessage();
+                          },
+                          value: true,
+                        ),
+                        onTap: () {
+                          model.hasSetupMessage();
+                        },
+                      )
+                    : CheckBoxField(
+                        message: 'Login with fingerprint / face recognition',
+                        onChanged: () => model.setIsCek(),
+                        value: model.getIsCheck,
+                      ),
                 verticalSpaceLarge,
-                Container(
+                SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
                     child: RaisedButton(

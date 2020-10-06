@@ -1,6 +1,6 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
-import 'package:firecek_stacked_architecture/ui/views/profile/item_menu_profile_view.dart';
-import 'package:firecek_stacked_architecture/viewmodels/profile/menu_profile_viewmodel.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/item_menu_profile_view.dart';
+import 'package:firecek_stacked_architecture/viewmodels/profile/menuprofile/menu_profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 

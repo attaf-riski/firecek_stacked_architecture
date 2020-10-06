@@ -79,7 +79,6 @@ class SignInViewModel extends BaseViewModel {
       result =
           await _authService.sigInWithEmail(email: email, password: password);
     }
-
     if (result == true) {
       //set current password
       //for add fingerprint in settings

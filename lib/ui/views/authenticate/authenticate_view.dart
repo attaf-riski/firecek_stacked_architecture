@@ -63,7 +63,10 @@ class AuthenticateView extends StatelessWidget {
                               : Text("Back To Sign In")),
                       Visibility(
                         child: FlatButton(
-                            onPressed: () {}, child: Text('Forget Password? ')),
+                            onPressed: () async {
+                              await model.pushToResetPassword();
+                            },
+                            child: Text('Forget Password? ')),
                         visible: model.isSignIn,
                       )
                     ],

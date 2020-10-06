@@ -21,8 +21,8 @@ class MenuHomeViewModel extends BaseViewModel {
         .listenToUserDataRealTime(user.uid, user.email)
         .listen((result) {
       _userData = result;
+      setBusy(false);
       notifyListeners();
     });
-    setBusy(false);
   }
 }

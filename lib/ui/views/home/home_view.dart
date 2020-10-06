@@ -73,7 +73,9 @@ class HomeView extends StatelessWidget {
             ),
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
-              backgroundColor: Colors.lightBlue[200],
+              backgroundColor: Colors.lightBlue,
+              selectedItemColor: Colors.black,
+              unselectedItemColor: Colors.black38,
               currentIndex: model.index,
               onTap: model.setIndex,
               items: [

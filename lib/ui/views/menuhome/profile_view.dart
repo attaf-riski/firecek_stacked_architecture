@@ -1,7 +1,7 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/shared/loading.dart';
-import 'package:firecek_stacked_architecture/ui/views/profile/menu_profile_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/menu_profile_view.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/profile_card.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/watertankmonitor/top_background.dart';
 import 'package:firecek_stacked_architecture/viewmodels/menuhome/menu_home_viewmodel.dart';
