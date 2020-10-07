@@ -60,7 +60,8 @@ dependencies:
   #qr
   qrscan: ^0.2.17
   #image picker
-  image_picker: ^0.6.6+4
+  image_picker: ^0.6.7+11
+  camera: ^0.5.8+7
 
 dev_dependencies:
   flutter_test:

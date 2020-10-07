@@ -14,11 +14,11 @@ class MenuProfileView extends StatelessWidget {
         child: Column(
           children: [
             ItemMenuProfileView(
-              iconData: Icons.person_add,
-              title: 'Profile Customize',
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-            ),
+                iconData: Icons.person_add,
+                title: 'Profile Customize',
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+                onTap: () async => model.pushToProfileCustomize()),
             ItemMenuProfileView(
               iconData: Icons.settings,
               title: 'Settings',

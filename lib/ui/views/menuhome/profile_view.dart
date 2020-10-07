@@ -34,9 +34,7 @@ class ProfileView extends StatelessWidget {
                     ],
                   )),
                   ProfileCard(
-                    email: model.userData.email,
-                    imageURL: model.userData.imageURL,
-                    name: model.userData.userName,
+                    userData: model.userData,
                   ),
                 ],
               ),

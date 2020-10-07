@@ -15,7 +15,7 @@ class SettingAppView extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.2,
               backButton: () => model.backButton(),
             ),
-            Container(
+            SizedBox(
               child: ListView(
                 children: ListTile.divideTiles(
                     color: Colors.black,

@@ -89,7 +89,7 @@ class FirestoreService {
     return _productController.stream;
   }
 
-  //update user data
+  //create user data
   Future createUserData(
       String uid, String name, String imageURL, List myProduct) async {
     bool result = true;

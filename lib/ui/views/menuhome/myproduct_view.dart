@@ -15,7 +15,13 @@ class MyProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<MenuHomeViewModel>.reactive(
         builder: (context, model, child) => (model.isBusy)
-            ? Loading()
+            ? SizedBox(
+                child: Center(
+                    child: SizedBox(
+                child: CircularProgressIndicator(),
+                height: 100,
+                width: 100,
+              )))
             : (model.userData.myProduct.isEmpty)
                 ? LottieMessage(
                     lottiePath: 'assets/lottie/empty.json',

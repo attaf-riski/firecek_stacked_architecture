@@ -9,7 +9,6 @@ class WaterTankMonitoringTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(productKey);
     return ViewModelBuilder<WaterTankMonitoringTileViewModel>.reactive(
         builder: (context, model, child) => StreamBuilder(
             stream: model.waterTankMonitorStream,
@@ -71,8 +70,6 @@ class WaterTankMonitoringTile extends StatelessWidget {
                 return Loading();
               }
             }),
-        disposeViewModel: false,
-        initialiseSpecialViewModelsOnce: true,
         onModelReady: (model) => model.productKey = productKey,
         viewModelBuilder: () => WaterTankMonitoringTileViewModel());
   }
