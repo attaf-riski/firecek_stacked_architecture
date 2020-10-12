@@ -1,9 +1,10 @@
+import 'package:firecek_stacked_architecture/models/user_data.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
-  final String name, email, imageURL;
-  ProfileCard({this.name, this.email, this.imageURL});
+  final UserData userData;
+  ProfileCard({this.userData});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class ProfileCard extends StatelessWidget {
             ClipRRect(
               child: SizedBox(
                 child: Image(
-                  image: NetworkImage(imageURL),
+                  image: NetworkImage(userData.imageURL),
                   fit: BoxFit.cover,
                 ),
                 height: 100,
@@ -25,13 +26,13 @@ class ProfileCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
             ),
             Text(
-              name ?? '',
+              userData.userName ?? '',
               style: profileCardTextStyle.copyWith(fontSize: 25),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              email ?? '',
+              userData.email ?? '',
               style: profileCardTextStyle.copyWith(fontSize: 25),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

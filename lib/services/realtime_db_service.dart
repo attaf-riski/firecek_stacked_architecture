@@ -5,8 +5,8 @@ class RealtimeDBService {
   DatabaseReference _myProductRef = FirebaseDatabase.instance.reference();
 
   //watertank
-  Stream listenToWaterTankMonitorRealTime(String productkey) {
-    return _myProductRef.child('WaterTank').onValue;
+  Stream listenToWaterTankMonitorRealTime(String productkey) async* {
+    yield _myProductRef.child('WaterTank').onValue;
   }
 
   //watertank

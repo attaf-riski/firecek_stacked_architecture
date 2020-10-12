@@ -51,7 +51,7 @@ class AuthService {
     try {
       var authResult = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      return authResult.user != null;
+      return User(email: authResult.user.email, uid: authResult.user.uid);
     } catch (e) {
       switch (e.code) {
         case 'ERROR_INVALID_EMAIL':
@@ -88,5 +88,39 @@ class AuthService {
       print(e);
       return false;
     }
+  }
+
+  //delete account
+  Future deleteAccount() async {
+    FirebaseUser user = await _firebaseAuth.currentUser();
+    await user.delete();
+  }
+
+  //send reset password
+  Future sendPasswordResetEmail(String email) async {
+    try {
+      print('(TRACE) AuthService:sendPasswordResetEmail. key: $email');
+      return await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      switch (e.code) {
+        case 'ERROR_INVALID_EMAIL':
+          return 'Email invalid.';
+        case 'ERROR_USER_NOT_FOUND':
+          return 'Email not firecek user.';
+        default:
+          return 'Error! link does not sent';
+      }
+    }
+  }
+
+  //update password
+  Future updatePassword(String password) async {
+    bool result = true;
+    var firebaseUser = await _firebaseAuth.currentUser();
+    firebaseUser.updatePassword(password).catchError((e) => result = false);
+    print('(TRACE) AuthService:updatePassword. email:' +
+        firebaseUser.email +
+        ' new pw: $password result: $result');
+    return result;
   }
 }

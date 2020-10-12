@@ -1,5 +1,5 @@
 import 'package:firecek_stacked_architecture/ui/widgets/watertankmonitor/top_background.dart';
-import 'package:firecek_stacked_architecture/viewmodels/profile/menuprofile/settings_app_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/profile/menuprofile/settings/settings_app_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -15,7 +15,7 @@ class SettingAppView extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.2,
               backButton: () => model.backButton(),
             ),
-            Container(
+            SizedBox(
               child: ListView(
                 children: ListTile.divideTiles(
                     color: Colors.black,
@@ -30,28 +30,30 @@ class SettingAppView extends StatelessWidget {
                             await model.biometricPopUp();
                           },
                         ),
-                      ListTile(
-                        leading: Icon(Icons.remove),
-                        title: Text('Reset Fingerprint'),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () async {
-                          await model.resetBiometric();
-                        },
-                      ),
+                      if (model.isBiometricHasSetupped ?? false)
+                        if (model.currentEmailEqualsBiometricEmail ?? false)
+                          ListTile(
+                            leading: Icon(Icons.remove),
+                            title: Text('Reset Fingerprint'),
+                            trailing: Icon(Icons.keyboard_arrow_right),
+                            onTap: () async {
+                              await model.resetBiometric();
+                            },
+                          ),
                       ListTile(
                         leading: Icon(Icons.remove),
                         title: Text('Change Password'),
                         trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {
-                          print('horse');
+                        onTap: () async {
+                          await model.pushToChangePassword();
                         },
                       ),
                       ListTile(
                         leading: Icon(Icons.remove),
                         title: Text('Reset Password'),
                         trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {
-                          print('horse');
+                        onTap: () async {
+                          await model.pushToResetPassword();
                         },
                       ),
                     ]).toList(),
@@ -61,6 +63,7 @@ class SettingAppView extends StatelessWidget {
           ],
         ),
       ),
+      onModelReady: (model) => model.checkIsCurrentEmailEqualsBiometricEmail(),
       viewModelBuilder: () => SettingsAppViewModel(),
     );
   }

@@ -14,8 +14,8 @@ class ProductViewModel extends BaseViewModel {
     setBusy(true);
     _firestoreService.listenToProductListRealTime().listen((result) {
       _products = result;
+      setBusy(false);
       notifyListeners();
     });
-    setBusy(false);
   }
 }

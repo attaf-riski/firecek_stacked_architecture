@@ -7,7 +7,8 @@ import 'package:firecek_stacked_architecture/services/fcm_service.dart';
 import 'package:firecek_stacked_architecture/services/firestore_service.dart';
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
-import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings_app_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/profile_customize/profile_customize_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/settings_app_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -57,9 +58,13 @@ class MenuProfileViewModel extends BaseViewModel {
 
   //push to settings
   Future pushToSettings() async {
-await _navigationService.navigateWithTransition(
-       SettingAppView(),
-        duration: fastDurationTransition,
-        transition: 'rightToLeft');
+    await _navigationService.navigateWithTransition(SettingAppView(),
+        duration: fastDurationTransition, transition: 'rightToLeft');
+  }
+
+  //push to profile customize
+  Future pushToProfileCustomize() async {
+    await _navigationService.navigateWithTransition(ProfileCustomizeView(),
+        duration: fastDurationTransition, transition: 'rightToLeft');
   }
 }

@@ -23,7 +23,10 @@ class _CheckBoxFieldState extends State<CheckBoxField> {
               widget.onChanged();
             }),
         horizontalSpaceSmall,
-        Text(widget.message)
+        Text(
+          widget.message,
+          textAlign: TextAlign.center,
+        )
       ],
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,

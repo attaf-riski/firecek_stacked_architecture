@@ -21,7 +21,7 @@ class ProductView extends StatelessWidget {
                   title: 'No Products',
                 )
               : Container(
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.fromLTRB(20, 30, 20, 20),
                   child: SmartRefresher(
                     controller: _refreshController,
                     child: GridView.count(

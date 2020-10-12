@@ -88,4 +88,16 @@ class FirestoreService {
     // Return the stream underlying our _postsController.
     return _productController.stream;
   }
+
+  //create user data
+  Future createUserData(
+      String uid, String name, String imageURL, List myProduct) async {
+    bool result = true;
+    await _usersCollectionReference.document(uid).setData({
+      'name': name,
+      'imageURL': imageURL,
+      'myProduct': myProduct,
+    }).catchError((e) => result = false);
+    return result;
+  }
 }

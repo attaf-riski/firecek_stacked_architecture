@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/shared/no_conn.dart';
-import 'package:firecek_stacked_architecture/ui/widgets/statefull_wrapper.dart';
 import 'package:firecek_stacked_architecture/viewmodels/home/home_viewmodel.dart';
 import 'package:firecek_stacked_architecture/ui/views/menuhome/myproduct_view.dart';
 import 'package:firecek_stacked_architecture/ui/views/menuhome/product_view.dart';
@@ -26,78 +25,78 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => WillPopScope(
-        child: StatefulWrapper(
-          onInit: (isCheckBiometric)
-              ? () async {
-                  await model.biometricPopUp(
-                      emailFromAuthenticate: emailFromAuthenticate,
-                      passwordFromAuthenticate: passwordFromAuthenticate);
-                }
-              : null,
-          child: Scaffold(
-            body: SmartRefresher(
-              child: (model.isOffline)
-                  ? Column(
-                      children: [
-                        LottieMessage(
-                          lottiePath: 'assets/lottie/no_conn.json',
-                          title: 'No internet.',
-                          height: MediaQuery.of(context).size.height * 0.5,
-                        )
-                      ],
-                    )
-                  : PageTransitionSwitcher(
-                      duration: slowDurationTransition,
-                      reverse: true,
-                      transitionBuilder: (
-                        Widget child,
-                        Animation<double> animation,
-                        Animation<double> secondaryAnimation,
-                      ) {
-                        return SharedAxisTransition(
-                          child: child,
-                          animation: animation,
-                          secondaryAnimation: secondaryAnimation,
-                          transitionType: SharedAxisTransitionType.horizontal,
-                        );
-                      },
-                      child: getViewForIndex(model.index),
-                    ),
-              controller: _refreshController,
-              enablePullDown: true,
-              onRefresh: () async {
-                model.notifyListeners();
-                await Future.delayed(Duration(seconds: 1));
-                _refreshController.refreshCompleted();
-              },
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Colors.lightBlue[200],
-              currentIndex: model.index,
-              onTap: model.setIndex,
-              items: [
-                BottomNavigationBarItem(
-                  label: 'Products',
-                  icon: Icon(Icons.list),
-                ),
-                BottomNavigationBarItem(
-                  label: 'My Products',
-                  icon: Icon(
-                    Icons.storage,
-                    size: 40,
+        child: Scaffold(
+          body: SmartRefresher(
+            child: (model.isOffline)
+                ? Column(
+                    children: [
+                      LottieMessage(
+                        lottiePath: 'assets/lottie/no_conn.json',
+                        title: 'No internet.',
+                        height: MediaQuery.of(context).size.height * 0.5,
+                      )
+                    ],
+                  )
+                : PageTransitionSwitcher(
+                    duration: slowDurationTransition,
+                    reverse: true,
+                    transitionBuilder: (
+                      Widget child,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation,
+                    ) {
+                      return SharedAxisTransition(
+                        child: child,
+                        animation: animation,
+                        secondaryAnimation: secondaryAnimation,
+                        transitionType: SharedAxisTransitionType.horizontal,
+                      );
+                    },
+                    child: getViewForIndex(model.index),
                   ),
+            controller: _refreshController,
+            enablePullDown: true,
+            onRefresh: () async {
+              model.notifyListeners();
+              await Future.delayed(Duration(seconds: 1));
+              _refreshController.refreshCompleted();
+            },
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.lightBlue,
+            selectedItemColor: Colors.black,
+            unselectedItemColor: Colors.black38,
+            currentIndex: model.index,
+            onTap: model.setIndex,
+            items: [
+              BottomNavigationBarItem(
+                label: 'Products',
+                icon: Icon(Icons.list),
+              ),
+              BottomNavigationBarItem(
+                label: 'My Products',
+                icon: Icon(
+                  Icons.storage,
+                  size: 40,
                 ),
-                BottomNavigationBarItem(
-                  label: 'Profile',
-                  icon: Icon(Icons.person),
-                ),
-              ],
-            ),
+              ),
+              BottomNavigationBarItem(
+                label: 'Profile',
+                icon: Icon(Icons.person),
+              ),
+            ],
           ),
         ),
         onWillPop: model.backButton,
       ),
+      onModelReady: (model) async {
+        if (isCheckBiometric) {
+          await model.biometricPopUp(
+              emailFromAuthenticate: emailFromAuthenticate,
+              passwordFromAuthenticate: passwordFromAuthenticate);
+        }
+      },
       viewModelBuilder: () => HomeViewModel(),
     );
   }

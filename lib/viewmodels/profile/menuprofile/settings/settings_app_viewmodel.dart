@@ -4,7 +4,9 @@ import 'package:firecek_stacked_architecture/services/auth_service.dart';
 import 'package:firecek_stacked_architecture/services/biometric_service.dart';
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/secure_storage_service.dart';
-import 'package:flutter/foundation.dart';
+import 'package:firecek_stacked_architecture/shared/constant.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/change_password_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/reset_password_view.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -59,13 +61,53 @@ class SettingsAppViewModel extends BaseViewModel {
 
   //reset biometric
   Future resetBiometric() async {
-    //set the isHasSetupBiometric to true
-    _localStorageService.hasSetupBiometric = false;
-    notifyListeners();
+    var result = await _dialogService.showConfirmationDialog(
+        cancelTitle: 'Cancel',
+        confirmationTitle: 'Reset',
+        dialogPlatform: DialogPlatform.Material,
+        title: 'Are you sure?',
+        description: 'Are you sure reset the fingerprint for login?');
+    if (result.confirmed) {
+      //set the isHasSetupBiometric to true
+      _localStorageService.hasSetupBiometric = false;
+      notifyListeners();
+      return true;
+    }
+    return false;
   }
 
   //backButton
   backButton() {
     _navigationService.back();
+  }
+
+  //state
+  bool _currentEmailEqualsBiometricEmail;
+  //getter and setter
+  get currentEmailEqualsBiometricEmail => _currentEmailEqualsBiometricEmail;
+
+  //
+  Future checkIsCurrentEmailEqualsBiometricEmail() async {
+    String emailInBiometric = await _secureStorageService.emailBiometric;
+    User currentUser = await _authService.userUIDAndEmail;
+    //-1 / 1 is not equivalent
+    //0 is equivalent
+    _currentEmailEqualsBiometricEmail =
+        emailInBiometric.compareTo(currentUser.email) == 0;
+    notifyListeners();
+  }
+
+  //push to reset password
+  pushToResetPassword() async {
+    await _navigationService.navigateWithTransition(
+        ResetPasswordView(inside: true),
+        duration: fastDurationTransition,
+        transition: 'rightToLeft');
+  }
+
+  //push to reset password
+  pushToChangePassword() async {
+    await _navigationService.navigateWithTransition(ChangePasswordView(),
+        duration: fastDurationTransition, transition: 'rightToLeft');
   }
 }

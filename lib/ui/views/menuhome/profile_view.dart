@@ -1,17 +1,17 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/shared/loading.dart';
-import 'package:firecek_stacked_architecture/ui/views/profile/menu_profile_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/menu_profile_view.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/profile_card.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/watertankmonitor/top_background.dart';
-import 'package:firecek_stacked_architecture/viewmodels/menuhome/menu_home_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/menuhome/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<MenuHomeViewModel>.reactive(
+    return ViewModelBuilder<ProfileViewModel>.reactive(
       builder: (context, model, child) => (model.isBusy)
           ? Loading()
           : SizedBox(
@@ -34,17 +34,13 @@ class ProfileView extends StatelessWidget {
                     ],
                   )),
                   ProfileCard(
-                    email: model.userData.email,
-                    imageURL: model.userData.imageURL,
-                    name: model.userData.userName,
+                    userData: model.userData,
                   ),
                 ],
               ),
             ),
-      disposeViewModel: false,
-      initialiseSpecialViewModelsOnce: true,
-      onModelReady: (model) => model.listenToUserData(),
-      viewModelBuilder: () => locator<MenuHomeViewModel>(),
+      onModelReady: (model) async => await model.listenToUserData(),
+      viewModelBuilder: () => ProfileViewModel(),
     );
   }
 }
