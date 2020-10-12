@@ -11,7 +11,6 @@ class WaterTankMonitoringDetailView extends StatelessWidget {
   WaterTankMonitoringDetailView({this.productKey});
   @override
   Widget build(BuildContext context) {
-    print(productKey);
     double ratio;
     final double topHeight = MediaQuery.of(context).size.height * 0.22;
     final double bottomheight = MediaQuery.of(context).size.height * 0.75;
@@ -20,7 +19,7 @@ class WaterTankMonitoringDetailView extends StatelessWidget {
     return ViewModelBuilder<WatertankMonitoringDetailViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
               body: StreamBuilder(
-                  stream: model.waterTankMonitorStream,
+                  stream: model.data,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.active) {
                       var _waterTankMonitorPath = snapshot.data;

@@ -6,7 +6,7 @@ import 'package:firecek_stacked_architecture/ui/views/myproduct/watertankmonitor
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class WaterTankMonitoringTileViewModel extends BaseViewModel {
+class WaterTankMonitoringTileViewModel extends StreamViewModel {
   final RealtimeDBService _realtimeDBService = locator<RealtimeDBService>();
   final NavigationService _navigationService = locator<NavigationService>();
   //watertankmonitoring data
@@ -17,7 +17,6 @@ class WaterTankMonitoringTileViewModel extends BaseViewModel {
   //for mapping json/map to custom class
   set waterTankMonitor(var dataJson) {
     _waterTankMonitor = WaterTankMonitor.fromJson(json: dataJson);
-    notifyListeners();
   }
 
   //product key and its setter
@@ -37,7 +36,7 @@ class WaterTankMonitoringTileViewModel extends BaseViewModel {
         transition: 'rightToLeft');
   }
 
-  //stream
-  Stream get waterTankMonitorStream =>
+  @override
+  Stream get stream =>
       _realtimeDBService.listenToWaterTankMonitorRealTime(_productKey);
 }

@@ -2,7 +2,7 @@ import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/shared/loading.dart';
 import 'package:firecek_stacked_architecture/shared/no_conn.dart';
 import 'package:firecek_stacked_architecture/ui/views/myproduct/watertankmonitor/watertank_monitoring_tile_view.dart';
-import 'package:firecek_stacked_architecture/viewmodels/menuhome/menu_home_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/menuhome/myproduct_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:stacked/stacked.dart';
@@ -13,15 +13,9 @@ class MyProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<MenuHomeViewModel>.reactive(
+    return ViewModelBuilder<MyProductViewModel>.reactive(
         builder: (context, model, child) => (model.isBusy)
-            ? SizedBox(
-                child: Center(
-                    child: SizedBox(
-                child: CircularProgressIndicator(),
-                height: 100,
-                width: 100,
-              )))
+            ? Loading()
             : (model.userData.myProduct.isEmpty)
                 ? LottieMessage(
                     lottiePath: 'assets/lottie/empty.json',
@@ -40,6 +34,7 @@ class MyProductView extends StatelessWidget {
                               List productKeyAndProductType =
                                   model.userData.myProduct[index].split('_');
                               if (productKeyAndProductType[1] == 'WaterTank') {
+                                //error muncul disini
                                 return WaterTankMonitoringTile(
                                     productKey: productKeyAndProductType[0]);
                               } else {
@@ -57,9 +52,7 @@ class MyProductView extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     ),
                   ),
-        disposeViewModel: false,
-        initialiseSpecialViewModelsOnce: true,
-        onModelReady: (model) => model.listenToUserData(),
-        viewModelBuilder: () => locator<MenuHomeViewModel>());
+        onModelReady: (model) async => await model.listenToUserData(),
+        viewModelBuilder: () => MyProductViewModel());
   }
 }

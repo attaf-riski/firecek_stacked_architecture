@@ -23,7 +23,9 @@ class ProfileCustomizeView extends StatelessWidget {
               backButton: () => model.backButton(),
             ),
             (model.isBusy)
-                ? Loading()
+                ? Loading(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                  )
                 : SizedBox(
                     child: ListView(
                       children: [
@@ -136,8 +138,10 @@ class ProfileCustomizeView extends StatelessWidget {
                                         style: TextStyle(color: Colors.white),
                                       ),
                                       onPressed: () async {
+                                        model.setBusy(true);
                                         await model.updateProfile(
                                             _nameController.text);
+                                        model.setBusy(false);
                                       }),
                                 ],
                                 mainAxisAlignment: MainAxisAlignment.end,

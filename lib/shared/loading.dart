@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatelessWidget {
+  final double height;
+  Loading({this.height});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,7 +13,7 @@ class Loading extends StatelessWidget {
           size: 90.0,
         ),
       ),
-      height: MediaQuery.of(context).size.height,
+      height: height ?? MediaQuery.of(context).size.height,
     );
   }
 }

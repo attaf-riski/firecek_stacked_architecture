@@ -86,6 +86,7 @@ flutter:
   assets:
     - assets/lottie/no_conn.json
     - assets/lottie/empty.json
+    - assets/lottie/list-loader.json
     - assets/images/header.jpg
     - assets/images/alert.png
   #   - images/a_dot_ham.jpeg
