@@ -23,23 +23,30 @@ class LocalStorageService {
     return value;
   }
 
-  void _saveToDisk<T>(String key, T content) {
+  List<String> _getFromDiskForListString(String key) {
+    List<String> value = _preferences.getStringList(key);
+    print(
+        '(TRACE) LocalStorageService:_getFromDiskForListString. key: $key value: $value');
+    return value;
+  }
+
+  Future _saveToDisk<T>(String key, T content) async {
     print('(TRACE) LocalStorageService:_saveToDisk. key: $key value: $content');
 
     if (content is String) {
-      _preferences.setString(key, content);
+      await _preferences.setString(key, content);
     }
     if (content is bool) {
-      _preferences.setBool(key, content);
+      await _preferences.setBool(key, content);
     }
     if (content is int) {
-      _preferences.setInt(key, content);
+      await _preferences.setInt(key, content);
     }
     if (content is double) {
-      _preferences.setDouble(key, content);
+      await _preferences.setDouble(key, content);
     }
     if (content is List<String>) {
-      _preferences.setStringList(key, content);
+      await _preferences.setStringList(key, content);
     }
   }
 
@@ -50,7 +57,7 @@ class LocalStorageService {
   //getter and setter for is has subcribe to this topic or not
   bool isSubscribeToThisTopic(String productKey) =>
       _getFromDisk(ISSUBSCRIBETOTHISTOPIC + productKey) ?? false;
-  void setIsSubscribeToThisTopic(String productKey, bool value) {
-    _saveToDisk(ISSUBSCRIBETOTHISTOPIC + productKey, value);
+  Future setIsSubscribeToThisTopic(String productKey, bool value) async {
+    await _saveToDisk(ISSUBSCRIBETOTHISTOPIC + productKey, value);
   }
 }

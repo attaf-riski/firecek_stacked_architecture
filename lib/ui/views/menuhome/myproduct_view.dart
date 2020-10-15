@@ -52,7 +52,9 @@ class MyProductView extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     ),
                   ),
-        onModelReady: (model) async => await model.listenToUserData(),
+        onModelReady: (model) async {
+          await model.listenToUserData();
+        },
         viewModelBuilder: () => MyProductViewModel());
   }
 }

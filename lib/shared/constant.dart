@@ -68,6 +68,8 @@ const Duration notificationShowTime = Duration(milliseconds: 10000);
 const Duration loadingTime = Duration(milliseconds: 100);
 //constant water change duration
 const Duration noInternetNotif = Duration(milliseconds: 5000);
+//update db
+const Duration updateDBDuration = Duration(minutes: 15);
 
 //constact key for secure storage
 const String EMAILFORBIOMETRIC = 'emailForBiometric';
@@ -75,3 +77,15 @@ const String PASSWORDFORBIOMETRIC = 'passwordForBiometric';
 const String HASSETUPBIOMETRIC = 'hasSetupBiometric';
 const String ISSUBSCRIBETOTHISTOPIC = 'isSubscribeToThisTopic';
 const String CURRENTPASSWORD = 'currentPassword';
+const String PRODUCTTYPEANDNAMEFORBACKGROUNDSERVICE =
+    'productTypeAndNameForBackgroundService';
+
+//constact tag backgroud
+const String UPDATEDBTAG = "firebase-realtime-db-update-tag";
+//constact task name backgroud
+const String UPDATEDBTASK = "firebase-realtime-db-update-task";
+//constact unique background task
+const String UPDATEDBUNIQUE = "firebase-realtime-db-update-unique";
+
+//product type
+const String WATERTANKMONITORING = 'WaterTank';

@@ -146,7 +146,7 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
     if (result.confirmed) {
       //delete
       var result = await _firestoreService.deleteProductFromUser(
-          user.uid, productKey + '_WaterTank');
+          user.uid, productKey + '_' + WATERTANKMONITORING);
       if (result == true) {
         //unsubscribe
         bool result =
