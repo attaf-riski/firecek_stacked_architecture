@@ -1,6 +1,6 @@
 class UserData {
   final userName, imageURL, email;
-  final List myProduct;
+  final List<String> myProduct;
 
   UserData({this.userName, this.imageURL, this.myProduct, this.email});
 
@@ -10,7 +10,7 @@ class UserData {
     return UserData(
         imageURL: map['imageURL'],
         userName: map['name'],
-        myProduct: map['myProduct'],
+        myProduct: map['myProduct'].cast<String>(),
         email: email);
   }
 }

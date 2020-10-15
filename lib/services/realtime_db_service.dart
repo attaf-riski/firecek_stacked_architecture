@@ -71,4 +71,15 @@ class RealtimeDBService {
         '(TRACE) RealtimeDBService:getMacAddress. product type: $productType product key : $productKey result: $result');
     return result;
   }
+
+  //watertank
+  //update watertank and pump status to false every 10 minutes
+  Future<bool> updateWatertankAndPumpStatus(String productKey) async {
+    bool result = true;
+    await _myProductRef.child('WaterTank').child(productKey).update({
+      'WaterTank': false,
+      'Pump': false,
+    }).catchError((e) => result = false);
+    return result;
+  }
 }

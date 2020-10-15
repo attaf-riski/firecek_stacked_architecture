@@ -46,4 +46,5 @@ Future setupLocator() async {
   //view model
   locator.registerLazySingleton(() => ProductViewModel());
   locator.registerLazySingleton(() => MenuProfileViewModel());
+  locator.registerLazySingleton(() => MyProductViewModel());
 }

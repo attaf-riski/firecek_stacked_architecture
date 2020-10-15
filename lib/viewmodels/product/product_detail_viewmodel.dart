@@ -78,7 +78,6 @@ class ProductDetailViewModel extends ReactiveViewModel {
                 _localStorageService.setIsSubscribeToThisTopic(
                     productRaw[1], true);
               }
-
               //navigate to menu myproduct
               _navigationService.popUntil((route) => route.isFirst);
               //change home index to my product
