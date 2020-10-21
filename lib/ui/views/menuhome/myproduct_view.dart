@@ -1,6 +1,8 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
+import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/shared/loading.dart';
 import 'package:firecek_stacked_architecture/shared/no_conn.dart';
+import 'package:firecek_stacked_architecture/ui/views/myproduct/firemonitor/firemonitor_tile_view.dart';
 import 'package:firecek_stacked_architecture/ui/views/myproduct/watertankmonitor/watertank_monitoring_tile_view.dart';
 import 'package:firecek_stacked_architecture/viewmodels/menuhome/myproduct_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -33,10 +35,16 @@ class MyProductView extends StatelessWidget {
                               //index 1 = productType
                               List productKeyAndProductType =
                                   model.userData.myProduct[index].split('_');
-                              if (productKeyAndProductType[1] == 'WaterTank') {
+                              if (productKeyAndProductType[1] ==
+                                  WATERTANKMONITORING) {
                                 //error muncul disini
                                 return WaterTankMonitoringTile(
                                     productKey: productKeyAndProductType[0]);
+                              } else if (productKeyAndProductType[1] ==
+                                  FIREMONITORING) {
+                                return FireMonitorTileView(
+                                  productKey: productKeyAndProductType[0],
+                                );
                               } else {
                                 return SizedBox();
                               }

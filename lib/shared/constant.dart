@@ -17,13 +17,11 @@ BoxDecoration profileCardDecortaion = BoxDecoration(
 
 //input decoraion
 const inputDecoration = InputDecoration(
-  enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.white, width: 2.0),
-  ),
-  focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.blue, width: 2.0)),
-  filled: true,
-);
+    border: OutlineInputBorder(borderSide: BorderSide.none),
+    suffixIcon: Icon(
+      Icons.edit,
+      color: Colors.white,
+    ));
 
 // Field Variables
 
@@ -31,6 +29,8 @@ const double fieldHeight = 55;
 const double smallFieldHeight = 40;
 const double inputFieldBottomMargin = 30;
 const double inputFieldSmallBottomMargin = 0;
+const EdgeInsets smallFieldPadding = const EdgeInsets.symmetric(horizontal: 0);
+
 const EdgeInsets fieldPadding = const EdgeInsets.symmetric(horizontal: 15);
 const EdgeInsets largeFieldPadding =
     const EdgeInsets.symmetric(horizontal: 15, vertical: 15);
@@ -56,7 +56,11 @@ const TextStyle welmo = TextStyle(
 );
 const TextStyle profileTitleTextStyle =
     const TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
-
+const TextStyle fireMonitorZonetextStyle = TextStyle(
+    color: Colors.black45,
+    fontSize: 20.0,
+    fontFamily: 'Arial',
+    fontWeight: FontWeight.w800);
 //constant duration transition
 const Duration slowDurationTransition = Duration(milliseconds: 1500);
 const Duration fastDurationTransition = Duration(milliseconds: 500);
@@ -89,3 +93,4 @@ const String UPDATEDBUNIQUE = "firebase-realtime-db-update-unique";
 
 //product type
 const String WATERTANKMONITORING = 'WaterTank';
+const String FIREMONITORING = 'FireMonitor';

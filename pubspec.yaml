@@ -89,8 +89,21 @@ flutter:
     - assets/lottie/no_conn.json
     - assets/lottie/empty.json
     - assets/lottie/list-loader.json
-    - assets/images/header.jpg
+    - assets/images/header_wm.jpg
     - assets/images/alert.png
+    - assets/images/firemonitorAssets/ac_fault.png
+    - assets/images/firemonitorAssets/ac_normal.png
+    - assets/images/firemonitorAssets/bat_fault.png
+    - assets/images/firemonitorAssets/bat_normal.png
+    - assets/images/firemonitorAssets/fault.png
+    - assets/images/firemonitorAssets/Fire.png
+    - assets/images/firemonitorAssets/header_fm.jpg
+    - assets/images/firemonitorAssets/normal.png
+    - assets/images/products/ammo.png
+    - assets/images/products/WaterTank.png
+    - assets/images/products/FireMonitor.png
+    - assets/images/products/lpmo.png
+    - assets/images/products/qr_pairing.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -4,6 +4,7 @@ import 'package:firecek_stacked_architecture/services/firestore_service.dart';
 import 'package:firecek_stacked_architecture/services/realtime_db_service.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/ui/views/authenticate/authenticate_view.dart';
+import 'package:firecek_stacked_architecture/viewmodels/myproduct/firemonitor/firemonitor_detail_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -12,6 +13,7 @@ import 'package:workmanager/workmanager.dart';
 import 'app/locator.dart';
 import 'models/user.dart';
 import 'models/user_data.dart';
+import 'ui/views/myproduct/firemonitor/firemonitor_detail_view.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,7 +70,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return OverlaySupport(
       child: MaterialApp(
-        //home: AuthenticateView(), //if want ot test view
+        //home: FireMonitorDetailView(), //if want ot test view
         initialRoute: AR.Routes.wrapperViewRoute,
         onGenerateRoute: AR.Router().onGenerateRoute,
         navigatorKey: locator<NavigationService>().navigatorKey,
@@ -76,31 +78,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// WidgetsFlutterBinding.ensureInitialized();
-//   //await setupLocator();
-//   final RealtimeDBService _realtimeDBService = locator<RealtimeDBService>();
-
-// if (task == UPDATEDBTASK) {
-//       print("Update DB");
-//       List<String> listProductToUpdate = inputData['list'];
-//       for (int i = 0; i < listProductToUpdate.length; i++) {
-//         //productKeyandType[0] = product key
-//         //productKeyandType[1] = product type
-//         List productKeyandType = listProductToUpdate[i].split('_');
-//         if (productKeyandType[1] == WATERTANKMONITORING) {
-//           await _realtimeDBService
-//               .updateWatertankAndPumpStatus(productKeyandType[0]);
-//         }
-//       }
-//     }
-
-// bool result = await _realtimeDBService
-//               .updateWatertankAndPumpStatus(productKeyandType[0]);
-//           print('(UPDATE) executeTask:watertank productkey : ' +
-//               productKeyandType[0] +
-//               ' || result :$result');
-
-// if (productKeyandType[1] == WATERTANKMONITORING) {
-//   print(productKeyandType[0]);
-// }
