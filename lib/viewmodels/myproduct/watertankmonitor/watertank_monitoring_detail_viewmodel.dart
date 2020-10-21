@@ -18,11 +18,11 @@ class WatertankMonitoringDetailViewModel extends StreamViewModel {
   }
 
   //product key and its setter
-  String _productKey;
+  String _productKey = 'initialised';
   get productKey => _productKey;
   set productKey(String productKey) {
     _productKey = productKey;
-    notifyListeners();
+    notifySourceChanged();
   }
 
   //backbutton

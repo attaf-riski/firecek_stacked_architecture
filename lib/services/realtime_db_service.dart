@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firecek_stacked_architecture/shared/constant.dart';
 
 class RealtimeDBService {
   DatabaseReference _myProductRef = FirebaseDatabase.instance.reference();
 
   //watertank
   Stream listenToWaterTankMonitorRealTime(String productkey) async* {
-    yield _myProductRef.child('WaterTank').onValue;
+    yield _myProductRef.child(WATERTANKMONITORING).child(productkey).onValue;
   }
 
   //watertank
@@ -73,12 +74,38 @@ class RealtimeDBService {
   }
 
   //watertank
-  //update watertank and pump status to false every 10 minutes
+  //update watertank and pump status to false every 15 minutes
   Future<bool> updateWatertankAndPumpStatus(String productKey) async {
     bool result = true;
-    await _myProductRef.child('WaterTank').child(productKey).update({
+    await _myProductRef.child(WATERTANKMONITORING).child(productKey).update({
       'WaterTank': false,
       'Pump': false,
+    }).catchError((e) => result = false);
+    return result;
+  }
+
+  //firemonitor
+  Stream listenToFireMonitorRealTime(String productkey) async* {
+    yield _myProductRef.child(FIREMONITORING).child(productkey).onValue;
+  }
+
+  //fireemonitor
+  //update watertank and pump status to false every 15 minutes
+  Future<bool> updateFMProductName(String productKey, String newname) async {
+    bool result = true;
+    await _myProductRef.child(FIREMONITORING).child(productKey).update({
+      'ProductName': newname,
+    }).catchError((e) => result = false);
+    return result;
+  }
+
+  //fireemonitor
+  //update watertank and pump status to false every 15 minutes
+  Future<bool> updateZoneName(
+      String productKey, String newname, String zoneKey) async {
+    bool result = true;
+    await _myProductRef.child(FIREMONITORING).child(productKey).update({
+      zoneKey: newname,
     }).catchError((e) => result = false);
     return result;
   }

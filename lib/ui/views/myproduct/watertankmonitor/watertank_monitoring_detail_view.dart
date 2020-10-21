@@ -22,9 +22,7 @@ class WaterTankMonitoringDetailView extends StatelessWidget {
                   stream: model.data,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.active) {
-                      var _waterTankMonitorPath = snapshot.data;
-                      model.waterTankMonitor =
-                          _waterTankMonitorPath.snapshot.value[productKey];
+                      model.waterTankMonitor = snapshot.data.snapshot.value;
                       ///////////var place//////////////
                       //ratio
                       ratio = (model.waterTankMonitor.distance /

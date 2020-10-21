@@ -20,10 +20,10 @@ class WaterTankMonitoringTileViewModel extends StreamViewModel {
   }
 
   //product key and its setter
-  String _productKey;
+  String _productKey = 'initialised';
   set productKey(String productKey) {
     _productKey = productKey;
-    notifyListeners();
+    notifySourceChanged();
   }
 
   //push to detail
@@ -37,6 +37,7 @@ class WaterTankMonitoringTileViewModel extends StreamViewModel {
   }
 
   @override
-  Stream get stream =>
-      _realtimeDBService.listenToWaterTankMonitorRealTime(_productKey);
+  Stream get stream => _realtimeDBService
+      .listenToWaterTankMonitorRealTime(_productKey)
+      .handleError((e) => print(e));
 }

@@ -14,12 +14,12 @@ class ProductTileView extends StatelessWidget {
         child: Hero(
           child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: Colors.blue),
-                color: Colors.lightBlue[50],
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xeeeeee),
                 image: DecorationImage(
-                  image: NetworkImage(product.imageURL),
-                  fit: BoxFit.cover,
+                  image: AssetImage(
+                      ('assets/images/products/' + product.idProduct + '.png')),
+                  fit: BoxFit.fill,
                 )),
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
           ),

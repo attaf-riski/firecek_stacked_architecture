@@ -36,7 +36,7 @@ class TopBackGroundWaterTankMonitorDetail extends StatelessWidget {
       ),
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/header.jpg'),
+              image: AssetImage('assets/images/header_wm.jpg'),
               fit: BoxFit.cover)),
     );
   }

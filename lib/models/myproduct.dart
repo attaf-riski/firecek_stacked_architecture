@@ -40,3 +40,59 @@ class WaterTankMonitor {
         password: json['Password']);
   }
 }
+
+class FireMonitor {
+  final bool acFault,
+      batteryFault,
+      fireMonitor1,
+      fireMonitor2,
+      zone1,
+      zone2,
+      zone3,
+      zone4,
+      zone1Fault,
+      zone2Fault,
+      zone3Fault,
+      zone4Fault;
+  final String productName, zone1Name, zone2Name, zone3Name, zone4Name;
+  FireMonitor(
+      {this.acFault,
+      this.batteryFault,
+      this.fireMonitor1,
+      this.fireMonitor2,
+      this.productName,
+      this.zone1Name,
+      this.zone2Name,
+      this.zone3Name,
+      this.zone4Name,
+      this.zone1,
+      this.zone2,
+      this.zone3,
+      this.zone4,
+      this.zone1Fault,
+      this.zone2Fault,
+      this.zone3Fault,
+      this.zone4Fault});
+
+  static FireMonitor fromJson({Map<dynamic, dynamic> map}) {
+    return FireMonitor(
+      acFault: map['ACFault'],
+      batteryFault: map['BatteryFault'],
+      fireMonitor1: map['FireMonitor1'],
+      fireMonitor2: map['FireMonitor2'],
+      productName: map['ProductName'],
+      zone1: map['Zone1'],
+      zone2: map['Zone2'],
+      zone3: map['Zone3'],
+      zone4: map['Zone4'],
+      zone1Fault: map['Zone1Fault'],
+      zone2Fault: map['Zone2Fault'],
+      zone3Fault: map['Zone3Fault'],
+      zone4Fault: map['Zone4Fault'],
+      zone1Name: map['Zone1Name'],
+      zone2Name: map['Zone2Name'],
+      zone3Name: map['Zone3Name'],
+      zone4Name: map['Zone4Name'],
+    );
+  }
+}

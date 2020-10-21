@@ -23,13 +23,6 @@ class LocalStorageService {
     return value;
   }
 
-  List<String> _getFromDiskForListString(String key) {
-    List<String> value = _preferences.getStringList(key);
-    print(
-        '(TRACE) LocalStorageService:_getFromDiskForListString. key: $key value: $value');
-    return value;
-  }
-
   Future _saveToDisk<T>(String key, T content) async {
     print('(TRACE) LocalStorageService:_saveToDisk. key: $key value: $content');
 

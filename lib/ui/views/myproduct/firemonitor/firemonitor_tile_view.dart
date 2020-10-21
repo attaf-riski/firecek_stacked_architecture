@@ -1,16 +1,16 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firecek_stacked_architecture/viewmodels/myproduct/watertankmonitor/watertank_monitoring_tile_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/myproduct/firemonitor/firemonitor_tile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stacked/stacked.dart';
 
-class WaterTankMonitoringTile extends StatelessWidget {
+class FireMonitorTileView extends StatelessWidget {
   final String productKey;
-  WaterTankMonitoringTile({this.productKey});
+  FireMonitorTileView({this.productKey});
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<WaterTankMonitoringTileViewModel>.reactive(
+    return ViewModelBuilder<FireMonitorTileViewModel>.reactive(
         builder: (context, model, child) => (!model.dataReady &&
                 !model.hasError)
             ? Padding(
@@ -23,18 +23,11 @@ class WaterTankMonitoringTile extends StatelessWidget {
                 stream: model.data,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.active) {
-                    model.waterTankMonitor = snapshot.data.snapshot.value;
+                    model.fireMonitor = snapshot.data.snapshot.value;
                     return Container(
                         child: Card(
                           child: ListTile(
-                            leading: CircleAvatar(
-                                radius: 25.0,
-                                backgroundColor:
-                                    (model.waterTankMonitor.status == 'Normal')
-                                        ? Colors.green
-                                        : Colors.red),
-                            subtitle: Text(model.waterTankMonitor.status),
-                            title: Text(model.waterTankMonitor.name),
+                            title: Text(model.fireMonitor.productName),
                             trailing: SizedBox(
                               child: Column(
                                 children: [
@@ -43,11 +36,11 @@ class WaterTankMonitoringTile extends StatelessWidget {
                                       CircleAvatar(
                                         radius: 10.0,
                                         backgroundColor:
-                                            model.waterTankMonitor.waterTank
+                                            model.fireMonitor.fireMonitor1
                                                 ? Colors.green
                                                 : Colors.red,
                                       ),
-                                      Text(' WaterTank')
+                                      Text(' Fault Checker')
                                     ],
                                   ),
                                   Row(
@@ -55,11 +48,11 @@ class WaterTankMonitoringTile extends StatelessWidget {
                                       CircleAvatar(
                                         radius: 10.0,
                                         backgroundColor:
-                                            model.waterTankMonitor.pump
+                                            model.fireMonitor.fireMonitor2
                                                 ? Colors.green
                                                 : Colors.red,
                                       ),
-                                      Text(' Pump')
+                                      Text(' Fire Checker')
                                     ],
                                   ),
                                 ],
@@ -74,6 +67,7 @@ class WaterTankMonitoringTile extends StatelessWidget {
                           ),
                           margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
                         ),
+                        height: 90,
                         margin: EdgeInsets.only(top: 8.0),
                         padding: EdgeInsets.only(top: 8.0));
                   } else {
@@ -89,6 +83,6 @@ class WaterTankMonitoringTile extends StatelessWidget {
         onModelReady: (model) {
           model.productKey = productKey;
         },
-        viewModelBuilder: () => WaterTankMonitoringTileViewModel());
+        viewModelBuilder: () => FireMonitorTileViewModel());
   }
 }

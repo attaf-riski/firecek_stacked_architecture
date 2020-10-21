@@ -31,13 +31,16 @@ class ProductDetailView extends StatelessWidget {
                   child: Hero(
                       tag: "pp$index",
                       child: Center(
-                        child: SizedBox(
-                          child: Image(
-                            image: NetworkImage(product.imageURL),
-                            fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: SizedBox(
+                            child: Image(
+                              image: AssetImage(('assets/images/products/' +
+                                  product.idProduct +
+                                  '.png')),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          height: 200,
-                          width: 200,
                         ),
                       )),
                   height: MediaQuery.of(context).size.height * 0.3,
@@ -71,17 +74,6 @@ class ProductDetailView extends StatelessWidget {
                         ),
                         height: MediaQuery.of(context).size.height * 0.32,
                       ),
-                      Container(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: RaisedButton(
-                              color: Colors.white,
-                              child: Text(
-                                "Add Product",
-                              ),
-                              onPressed: () async {
-                                await model.scanToAdd();
-                              })),
                     ],
                   ),
                   decoration: BoxDecoration(

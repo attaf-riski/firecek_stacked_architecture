@@ -7,7 +7,6 @@ import 'package:firecek_stacked_architecture/services/auth_service.dart';
 import 'package:firecek_stacked_architecture/services/cloud_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/firestore_service.dart';
 import 'package:firecek_stacked_architecture/services/media_service.dart';
-import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
