@@ -54,12 +54,14 @@ class FireMonitor {
       zone2Fault,
       zone3Fault,
       zone4Fault;
+  final history;
   final String productName, zone1Name, zone2Name, zone3Name, zone4Name;
   FireMonitor(
       {this.acFault,
       this.batteryFault,
       this.fireMonitor1,
       this.fireMonitor2,
+      this.history,
       this.productName,
       this.zone1Name,
       this.zone2Name,
@@ -80,6 +82,7 @@ class FireMonitor {
       batteryFault: map['BatteryFault'],
       fireMonitor1: map['FireMonitor1'],
       fireMonitor2: map['FireMonitor2'],
+      history: map['History'] ?? [],
       productName: map['ProductName'],
       zone1: map['Zone1'],
       zone2: map['Zone2'],

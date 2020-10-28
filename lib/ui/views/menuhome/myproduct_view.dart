@@ -1,4 +1,3 @@
-import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/shared/loading.dart';
 import 'package:firecek_stacked_architecture/shared/no_conn.dart';
@@ -27,28 +26,30 @@ class MyProductView extends StatelessWidget {
                       child: SmartRefresher(
                         controller: _refreshController,
                         child: ListView.builder(
-                            physics: AlwaysScrollableScrollPhysics(),
-                            itemCount: model.userData.myProduct.length,
-                            itemBuilder: (context, index) {
-                              //multiproduct start here
-                              //index 0 = productKey
-                              //index 1 = productType
-                              List productKeyAndProductType =
-                                  model.userData.myProduct[index].split('_');
-                              if (productKeyAndProductType[1] ==
-                                  WATERTANKMONITORING) {
-                                //error muncul disini
-                                return WaterTankMonitoringTile(
-                                    productKey: productKeyAndProductType[0]);
-                              } else if (productKeyAndProductType[1] ==
-                                  FIREMONITORING) {
-                                return FireMonitorTileView(
-                                  productKey: productKeyAndProductType[0],
-                                );
-                              } else {
-                                return SizedBox();
-                              }
-                            }),
+                          physics: AlwaysScrollableScrollPhysics(),
+                          itemCount: model.userData.myProduct.length,
+                          itemBuilder: (context, index) {
+                            //multiproduct start here
+                            //index 0 = productKey
+                            //index 1 = productType
+                            List productKeyAndProductType =
+                                model.userData.myProduct[index].split('_');
+                            if (productKeyAndProductType[1] ==
+                                WATERTANKMONITORING) {
+                              //error muncul disini
+                              return WaterTankMonitoringTile(
+                                  productKey: productKeyAndProductType[0]);
+                            } else if (productKeyAndProductType[1] ==
+                                FIREMONITORING) {
+                              return FireMonitorTileView(
+                                productKey: productKeyAndProductType[0],
+                              );
+                            } else {
+                              return SizedBox();
+                            }
+                          },
+                          shrinkWrap: true,
+                        ),
                         enablePullDown: true,
                         onRefresh: () async {
                           model.notifyListeners();

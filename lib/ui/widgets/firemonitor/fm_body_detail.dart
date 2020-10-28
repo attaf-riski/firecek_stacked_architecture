@@ -12,8 +12,9 @@ class FMBodyDetail extends StatelessWidget {
   final FocusNode zone4NameFocusNode = FocusNode();
   final Function zoneNameChanged;
   final bool isNotificatationEnable;
-  final Function deleteProduct, onOffNotif;
+  final Function deleteProduct, onOffNotif, history;
   FMBodyDetail({
+    this.history,
     this.onOffNotif,
     this.isNotificatationEnable,
     this.deleteProduct,
@@ -190,7 +191,17 @@ class FMBodyDetail extends StatelessWidget {
                     verticalSpaceSmall,
                     Flexible(
                       flex: 1,
-                      child: ZoneTile(title: 'HISTORY', subtitle: ''),
+                      child: MaterialInkwell(
+                        borderRadiusValue: 15,
+                        backgroundColor:
+                            isNotificatationEnable ? Colors.red : Colors.green,
+                        child: ZoneTile(
+                          title: 'HISTORY',
+                          subtitle: '',
+                        ),
+                        onTap: () => history(),
+                        splashColor: Color(0xffbbdefa),
+                      ),
                     ),
                     verticalSpaceSmall,
                     Flexible(

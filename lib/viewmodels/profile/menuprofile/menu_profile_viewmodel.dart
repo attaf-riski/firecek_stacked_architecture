@@ -40,14 +40,13 @@ class MenuProfileViewModel extends BaseViewModel {
       List productNameForTopic = userData.myProduct;
       //unsubribe to topic with name of product user
       productNameForTopic.forEach((element) async {
-        List productKey = element.split('_');
         //product key 0 = productKey
         //product key 1 = productType
         //
         //unsubribe to all product in myProduct
-        await _pushNotificationService.unsubscribeToTopic(productKey[0]);
+        await _pushNotificationService.unsubscribeToTopic(element);
         //set button on/off notif in myproduct detail to on all
-        _localStorageService.setIsSubscribeToThisTopic(productKey[0], false);
+        _localStorageService.setIsSubscribeToThisTopic(element, false);
       });
       var result = await _authService.signOut();
       if (result == true) {

@@ -1,6 +1,3 @@
-import 'package:firecek_stacked_architecture/shared/constant.dart';
-import 'package:firecek_stacked_architecture/shared/ui_helpers.dart';
-import 'package:firecek_stacked_architecture/ui/widgets/input_field.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/second_jnput_field.dart';
 import 'package:flutter/material.dart';
 

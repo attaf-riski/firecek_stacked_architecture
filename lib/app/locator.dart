@@ -6,6 +6,7 @@ import 'package:firecek_stacked_architecture/services/cloud_storage_service.dart
 import 'package:firecek_stacked_architecture/services/connectivity_service.dart';
 import 'package:firecek_stacked_architecture/services/fcm_service.dart';
 import 'package:firecek_stacked_architecture/services/firestore_service.dart';
+import 'package:firecek_stacked_architecture/services/flashlight_service.dart';
 import 'package:firecek_stacked_architecture/services/home_index_service.dart';
 import 'package:firecek_stacked_architecture/services/media_service.dart';
 import 'package:firecek_stacked_architecture/services/realtime_db_service.dart';
@@ -13,7 +14,6 @@ import 'package:firecek_stacked_architecture/services/secure_storage_service.dar
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/viewmodels/menuhome/myproduct_viewmodel.dart';
 import 'package:firecek_stacked_architecture/viewmodels/menuhome/product_viewmodel.dart';
-import 'package:firecek_stacked_architecture/viewmodels/menuhome/profile_viewmodel.dart';
 import 'package:firecek_stacked_architecture/viewmodels/profile/menuprofile/menu_profile_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -43,6 +43,7 @@ Future setupLocator() async {
   locator.registerLazySingleton(() => HomeIndexService());
   locator.registerLazySingleton(() => CloudStorageService());
   locator.registerLazySingleton(() => MediaService());
+  locator.registerLazySingleton(() => FlashLightService());
   //view model
   locator.registerLazySingleton(() => ProductViewModel());
   locator.registerLazySingleton(() => MenuProfileViewModel());

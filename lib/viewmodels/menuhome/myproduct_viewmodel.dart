@@ -2,9 +2,9 @@ import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/models/user.dart';
 import 'package:firecek_stacked_architecture/models/user_data.dart';
 import 'package:firecek_stacked_architecture/services/auth_service.dart';
+import 'package:firecek_stacked_architecture/services/fcm_service.dart';
 import 'package:firecek_stacked_architecture/services/firestore_service.dart';
-import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
-import 'package:firecek_stacked_architecture/services/realtime_db_service.dart';
+import 'package:firecek_stacked_architecture/services/flashlight_service.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:stacked/stacked.dart';
 import 'package:workmanager/workmanager.dart';
@@ -45,5 +45,18 @@ class MyProductViewModel extends BaseViewModel {
         constraints: Constraints(networkType: NetworkType.connected),
         tag: UPDATEDBTAG,
         frequency: updateDBDuration);
+  }
+
+  //uji coba
+  firemonitorNotif() async {
+    await PushNotificationService.showNotificationWithDefaultSound(
+        'fire', 'test fire',
+        productType: FIREMONITORING);
+  }
+
+  watermonitorNotif() async {
+    await PushNotificationService.showNotificationWithDefaultSound(
+        'water', 'test water',
+        productType: WATERTANKMONITORING);
   }
 }
