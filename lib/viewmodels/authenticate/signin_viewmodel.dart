@@ -92,14 +92,13 @@ class SignInViewModel extends BaseViewModel {
       List productNameForTopic = userData.myProduct;
       //subscribe to topic with name of product user
       productNameForTopic.forEach((element) async {
-        List productKey = element.split('_');
         //product key 0 = productKey
         //product key 1 = productType
         //
         //subscribe to all product in myProduct
-        await _pushNotificationService.subscribeToTopic(productKey[0]);
+        await _pushNotificationService.subscribeToTopic(element);
         //set button on/off notif in myproduct detail to on all
-        _localStorageService.setIsSubscribeToThisTopic(productKey[0], true);
+        _localStorageService.setIsSubscribeToThisTopic(element, true);
       });
       //stop show loading
       setBusy(false);

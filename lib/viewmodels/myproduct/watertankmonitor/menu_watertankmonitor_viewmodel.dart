@@ -113,8 +113,8 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
 
   //set _isNotificationEnabled like notification status in local storage
   readLocalStorage() {
-    _isNotificationEnabled =
-        _localStorageService.isSubscribeToThisTopic(productKey);
+    _isNotificationEnabled = _localStorageService
+        .isSubscribeToThisTopic(productKey + '_' + WATERTANKMONITORING);
     notifyListeners();
   }
 
@@ -123,12 +123,14 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
     bool result = false;
     //set subscribe/unsubcribe to fcm
     (isNotificationEnabled)
-        ? result = await _pushNotificationService.unsubscribeToTopic(productKey)
-        : result = await _pushNotificationService.subscribeToTopic(productKey);
+        ? result = await _pushNotificationService
+            .unsubscribeToTopic(productKey + '_' + WATERTANKMONITORING)
+        : result = await _pushNotificationService
+            .subscribeToTopic(productKey + '_' + WATERTANKMONITORING);
     //set notification menjadi kebalikan
     if (result) {
       _localStorageService.setIsSubscribeToThisTopic(
-          productKey, !_isNotificationEnabled);
+          productKey + '_' + WATERTANKMONITORING, !_isNotificationEnabled);
       readLocalStorage();
     }
   }
@@ -149,11 +151,12 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
           user.uid, productKey + '_' + WATERTANKMONITORING);
       if (result == true) {
         //unsubscribe
-        bool result =
-            await _pushNotificationService.unsubscribeToTopic(productKey);
+        bool result = await _pushNotificationService
+            .unsubscribeToTopic(productKey + '_' + WATERTANKMONITORING);
         //delete status in local storage
         if (result) {
-          _localStorageService.setIsSubscribeToThisTopic(productKey, false);
+          _localStorageService.setIsSubscribeToThisTopic(
+              productKey + '_' + WATERTANKMONITORING, false);
           readLocalStorage();
         }
         //navigate to menu myproduct

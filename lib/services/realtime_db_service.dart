@@ -109,4 +109,17 @@ class RealtimeDBService {
     }).catchError((e) => result = false);
     return result;
   }
+
+  //firemonitor
+  //update off untuk firemonitor 1 -> fault checker
+  //update off untuk firemonitor 2 -> fire checker
+  Future<bool> updateFireMonitor1And2(String productKey) async {
+    bool result = true;
+    await _myProductRef
+        .child(FIREMONITORING)
+        .child(productKey)
+        .update({'FireMonitor1': false, 'FireMonitor2': false}).catchError(
+            (e) => result = false);
+    return result;
+  }
 }

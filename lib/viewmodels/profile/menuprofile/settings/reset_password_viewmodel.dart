@@ -1,5 +1,4 @@
 import 'package:firecek_stacked_architecture/app/locator.dart';
-import 'package:firecek_stacked_architecture/models/user.dart';
 import 'package:firecek_stacked_architecture/services/auth_service.dart';
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/secure_storage_service.dart';

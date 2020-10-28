@@ -82,11 +82,11 @@ class ProductViewModel extends ReactiveViewModel {
             if (isAdd) {
               //subsribe to topic
               bool isSubscribe = await _pushNotificationService
-                  .subscribeToTopic(productRaw[1]);
+                  .subscribeToTopic(productKeyAndType);
               //add notif status in local storage
               if (isSubscribe) {
                 _localStorageService.setIsSubscribeToThisTopic(
-                    productRaw[1], true);
+                    productKeyAndType, true);
               }
               //navigate to menu myproduct
               _navigationService.popUntil((route) => route.isFirst);

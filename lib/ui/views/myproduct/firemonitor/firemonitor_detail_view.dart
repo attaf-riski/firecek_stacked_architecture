@@ -33,6 +33,7 @@ class FireMonitorDetailView extends StatelessWidget {
                           child: FMBodyDetail(
                             deleteProduct: model.deleteProduct,
                             fireMonitor: model.fireMonitor,
+                            history: model.pushToHistory,
                             isNotificatationEnable: model.isNotificationEnabled,
                             onOffNotif:
                                 model.toggleEnableAndDisableNotification,
