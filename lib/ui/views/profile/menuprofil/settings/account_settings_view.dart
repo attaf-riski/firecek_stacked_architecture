@@ -3,7 +3,7 @@ import 'package:firecek_stacked_architecture/viewmodels/profile/menuprofile/sett
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class SettingAppView extends StatelessWidget {
+class AccountSettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SettingsAppViewModel>.reactive(
@@ -11,7 +11,7 @@ class SettingAppView extends StatelessWidget {
         body: Column(
           children: [
             TopBackground(
-              title: 'Settings',
+              title: 'Account Settings',
               height: MediaQuery.of(context).size.height * 0.2,
               backButton: () => model.backButton(),
             ),
@@ -22,25 +22,19 @@ class SettingAppView extends StatelessWidget {
                     context: context,
                     tiles: [
                       ListTile(
-                        leading: Icon(Icons.person),
-                        title: Text('Account'),
+                        leading: Icon(Icons.remove),
+                        title: Text('Change Password'),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         onTap: () async {
-                          await model.pushToAccountSettings();
+                          await model.pushToChangePassword();
                         },
                       ),
                       ListTile(
-                        leading: Icon(Icons.remove_red_eye),
-                        title: Text('Appearance'),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () async {},
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.lock),
-                        title: Text('Privacy & Security'),
+                        leading: Icon(Icons.remove),
+                        title: Text('Reset Password'),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         onTap: () async {
-                          await model.pushToSecuritySettings();
+                          await model.pushToResetPassword();
                         },
                       ),
                     ]).toList(),

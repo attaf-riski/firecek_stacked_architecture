@@ -5,8 +5,10 @@ import 'package:firecek_stacked_architecture/services/biometric_service.dart';
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/secure_storage_service.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/account_settings_view.dart';
 import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/change_password_view.dart';
 import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/reset_password_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/security_settings_view.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -108,6 +110,18 @@ class SettingsAppViewModel extends BaseViewModel {
   //push to reset password
   pushToChangePassword() async {
     await _navigationService.navigateWithTransition(ChangePasswordView(),
+        duration: fastDurationTransition, transition: 'rightToLeft');
+  }
+
+  //push to account settings
+  pushToAccountSettings() async {
+    await _navigationService.navigateWithTransition(AccountSettingsView(),
+        duration: fastDurationTransition, transition: 'rightToLeft');
+  }
+
+  //push to security settings
+  pushToSecuritySettings() async {
+    await _navigationService.navigateWithTransition(SecuritySettingsView(),
         duration: fastDurationTransition, transition: 'rightToLeft');
   }
 }
