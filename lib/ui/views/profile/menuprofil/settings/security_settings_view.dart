@@ -3,7 +3,7 @@ import 'package:firecek_stacked_architecture/viewmodels/profile/menuprofile/sett
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class SettingAppView extends StatelessWidget {
+class SecuritySettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SettingsAppViewModel>.reactive(
@@ -11,7 +11,7 @@ class SettingAppView extends StatelessWidget {
         body: Column(
           children: [
             TopBackground(
-              title: 'Settings',
+              title: 'Security & Privacy Settings',
               height: MediaQuery.of(context).size.height * 0.2,
               backButton: () => model.backButton(),
             ),
@@ -21,28 +21,25 @@ class SettingAppView extends StatelessWidget {
                     color: Colors.black,
                     context: context,
                     tiles: [
-                      ListTile(
-                        leading: Icon(Icons.person),
-                        title: Text('Account'),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () async {
-                          await model.pushToAccountSettings();
-                        },
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.remove_red_eye),
-                        title: Text('Appearance'),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () async {},
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.lock),
-                        title: Text('Privacy & Security'),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () async {
-                          await model.pushToSecuritySettings();
-                        },
-                      ),
+                      if (!model.isBiometricHasSetupped)
+                        ListTile(
+                          leading: Icon(Icons.add),
+                          title: Text('Add Fingerprint'),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () async {
+                            await model.biometricPopUp();
+                          },
+                        ),
+                      if (model.isBiometricHasSetupped ?? false)
+                        if (model.currentEmailEqualsBiometricEmail ?? false)
+                          ListTile(
+                            leading: Icon(Icons.remove),
+                            title: Text('Reset Fingerprint'),
+                            trailing: Icon(Icons.keyboard_arrow_right),
+                            onTap: () async {
+                              await model.resetBiometric();
+                            },
+                          ),
                     ]).toList(),
               ),
               height: MediaQuery.of(context).size.height * 0.8,

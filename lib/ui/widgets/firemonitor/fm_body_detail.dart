@@ -127,11 +127,11 @@ class FMBodyDetail extends StatelessWidget {
                                       ? true
                                       : false,
                                   isZone: true,
-                                  imagePath: (fireMonitor.zone3Fault)
-                                      ? (fireMonitor.zone3)
+                                  imagePath: (fireMonitor.zone4Fault)
+                                      ? (fireMonitor.zone4)
                                           ? 'assets/images/firemonitorAssets/Fire.png'
                                           : 'assets/images/firemonitorAssets/fault.png'
-                                      : (fireMonitor.zone3)
+                                      : (fireMonitor.zone4)
                                           ? 'assets/images/firemonitorAssets/Fire.png'
                                           : 'assets/images/firemonitorAssets/normal.png',
                                   onSubmitted: zoneNameChanged,
