@@ -29,6 +29,15 @@ class FireMonitorDetailViewModel extends StreamViewModel {
     _productName = newName;
   }
 
+  //for text size
+  double _addTextSize = 0;
+  get addTextSize => _addTextSize;
+  //add size from local storage
+  loadAddTextSize() async {
+    _addTextSize = await _localStorageService.textSize;
+    notifyListeners();
+  }
+
   //data
   FireMonitor _fireMonitor;
   get fireMonitor => _fireMonitor;

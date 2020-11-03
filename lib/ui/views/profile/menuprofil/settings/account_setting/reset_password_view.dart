@@ -2,7 +2,7 @@ import 'package:firecek_stacked_architecture/shared/loading.dart';
 import 'package:firecek_stacked_architecture/shared/ui_helpers.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/input_field.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/watertankmonitor/top_background.dart';
-import 'package:firecek_stacked_architecture/viewmodels/profile/menuprofile/settings/reset_password_viewmodel.dart';
+import 'package:firecek_stacked_architecture/viewmodels/profile/menuprofile/settings/security_setting/reset_password_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 

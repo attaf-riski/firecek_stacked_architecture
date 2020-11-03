@@ -49,6 +49,7 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
         child: ListView(
           children: [
             ItemWaterTankMonitordetail(
+              addTextSize: model.addTextSize,
               title: 'Status',
               fontColor: Colors.white,
               content: [status],
@@ -56,6 +57,7 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
               isPumpOrStatusOn: [statusCondition],
             ),
             ItemWaterTankMonitordetail(
+              addTextSize: model.addTextSize,
               title: 'Pump Status',
               fontColor: Colors.white,
               cardHeight: 175.0,
@@ -68,14 +70,17 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
               ],
             ),
             ItemWaterTankMonitordetail(
+              addTextSize: model.addTextSize,
               title: 'Surface Height',
               content: [waterTankMonitor.distance.toString() + ' CM'],
             ),
             ItemWaterTankMonitordetail(
+              addTextSize: model.addTextSize,
               title: 'Water Percentage',
               content: [(ratio * 100).toStringAsFixed(0) + ' %'],
             ),
             ItemWaterTankMonitordetail(
+              addTextSize: model.addTextSize,
               title: 'Volume',
               content: [(volume.format(waterTankMonitor.volume / 100)) + ' M3'],
             ),
@@ -84,6 +89,7 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
               backgroundColor: Color(0xffe4f2fd),
               borderRadiusValue: 15,
               child: ItemWaterTankMonitordetail(
+                addTextSize: model.addTextSize,
                 cardColor: Colors.transparent,
                 content: ['Settings'],
               ),
@@ -95,6 +101,7 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
               backgroundColor: Color(0xffe4f2fd),
               borderRadiusValue: 15,
               child: ItemWaterTankMonitordetail(
+                addTextSize: model.addTextSize,
                 cardColor: Colors.transparent,
                 content: ['History'],
               ),
@@ -107,6 +114,7 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
                   (model.isNotificationEnabled) ? Colors.red : Colors.green,
               borderRadiusValue: 15,
               child: ItemWaterTankMonitordetail(
+                addTextSize: model.addTextSize,
                 fontColor:
                     (model.isNotificationEnabled) ? Colors.white : Colors.black,
                 fontSize: 12,
@@ -126,6 +134,7 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
               backgroundColor: Colors.red,
               borderRadiusValue: 15,
               child: ItemWaterTankMonitordetail(
+                addTextSize: model.addTextSize,
                 fontColor: Colors.white,
                 content: ['Delete Product'],
                 cardColor: Colors.transparent,
@@ -139,7 +148,8 @@ class MenuWaterTankMonitorDetailView extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 30.0),
       ),
       viewModelBuilder: () => MenuWaterTankMonitorViewModel(),
-      onModelReady: (model) {
+      onModelReady: (model) async {
+        model.loadAddTextSize();
         model.productKey = productKey;
         model.waterTankMonitor = waterTankMonitor;
         model.readLocalStorage();

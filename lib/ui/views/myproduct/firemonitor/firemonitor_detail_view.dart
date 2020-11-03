@@ -31,6 +31,7 @@ class FireMonitorDetailView extends StatelessWidget {
                         //body
                         SizedBox(
                           child: FMBodyDetail(
+                            addTextSize: model.addTextSize,
                             deleteProduct: model.deleteProduct,
                             fireMonitor: model.fireMonitor,
                             history: model.pushToHistory,
@@ -51,6 +52,7 @@ class FireMonitorDetailView extends StatelessWidget {
               ),
             ),
         onModelReady: (model) {
+          model.loadAddTextSize();
           model.productKey = productKey;
           model.readLocalStorage();
         },

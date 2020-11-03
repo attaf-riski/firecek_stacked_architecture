@@ -4,7 +4,7 @@ import 'package:firecek_stacked_architecture/app/locator.dart';
 import 'package:firecek_stacked_architecture/services/auth_toggle_state.dart';
 import 'package:firecek_stacked_architecture/services/connectivity_service.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
-import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/reset_password_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/account_setting/reset_password_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
