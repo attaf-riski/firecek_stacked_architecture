@@ -83,6 +83,7 @@ const String ISSUBSCRIBETOTHISTOPIC = 'isSubscribeToThisTopic';
 const String CURRENTPASSWORD = 'currentPassword';
 const String PRODUCTTYPEANDNAMEFORBACKGROUNDSERVICE =
     'productTypeAndNameForBackgroundService';
+const String TEXTSIZE = 'textSize';
 
 //constact tag backgroud
 const String UPDATEDBTAG = "firebase-realtime-db-update-tag";

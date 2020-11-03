@@ -23,9 +23,11 @@ class HomeView extends StatelessWidget {
   final RefreshController _refreshController = RefreshController();
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => WillPopScope(
         child: Scaffold(
+          backgroundColor: theme.backgroundColor,
           body: SmartRefresher(
             child: (model.isOffline)
                 ? Column(

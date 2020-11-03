@@ -53,4 +53,8 @@ class LocalStorageService {
   Future setIsSubscribeToThisTopic(String productKey, bool value) async {
     await _saveToDisk(ISSUBSCRIBETOTHISTOPIC + productKey, value);
   }
+
+  //get and set for text size
+  get textSize => _getFromDisk(TEXTSIZE) ?? 0.0;
+  set textSize(double textSize) => _saveToDisk(TEXTSIZE, textSize);
 }

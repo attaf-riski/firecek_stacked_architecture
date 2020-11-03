@@ -32,6 +32,15 @@ class MenuWaterTankMonitorViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  //for text size
+  double _addTextSize = 0;
+  get addTextSize => _addTextSize;
+  //add size from local storage
+  loadAddTextSize() async {
+    _addTextSize = await _localStorageService.textSize;
+    notifyListeners();
+  }
+
   //for the data
   WaterTankMonitor _waterTankMonitor;
   set waterTankMonitor(WaterTankMonitor waterTankMonitor) {

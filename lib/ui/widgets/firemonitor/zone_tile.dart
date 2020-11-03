@@ -10,8 +10,9 @@ class ZoneTile extends StatelessWidget {
   final Color color;
   final bool isWhiteColor, isZone;
   final FocusNode focusNode;
-
+  final double addTextSize;
   ZoneTile({
+    this.addTextSize,
     this.zoneKey,
     this.onSubmitted,
     this.focusNode,
@@ -51,7 +52,8 @@ class ZoneTile extends StatelessWidget {
                     Text(
                       title,
                       style: fireMonitorZonetextStyle.copyWith(
-                          color: isWhiteColor ? Colors.white : Colors.black45),
+                          color: isWhiteColor ? Colors.white : Colors.black45,
+                          fontSize: 20 + addTextSize),
                     ),
                     (isZone)
                         ? Text('')
@@ -61,7 +63,7 @@ class ZoneTile extends StatelessWidget {
                                 color: isWhiteColor
                                     ? Colors.white
                                     : Colors.black45,
-                                fontSize: 15),
+                                fontSize: 15 + addTextSize),
                           )
                   ],
                   crossAxisAlignment: CrossAxisAlignment.start,

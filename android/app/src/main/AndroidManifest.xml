@@ -19,7 +19,7 @@
 
     <application
         android:name=".Application"
-        android:label="firecek_stacked_architecture"
+        android:label="FireCek-debugMode"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
         <activity

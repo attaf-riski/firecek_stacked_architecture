@@ -10,7 +10,9 @@ class ItemWaterTankMonitordetail extends StatelessWidget {
   final Color cardColor;
   final Color fontColor;
   final double fontSize;
+  final double addTextSize;
   ItemWaterTankMonitordetail({
+    this.addTextSize,
     this.fontSize,
     this.fontColor = Colors.black,
     this.cardColor,
@@ -31,10 +33,9 @@ class ItemWaterTankMonitordetail extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Center(
-                    child: Text(
-                  title,
-                  style: textStyleJudul,
-                )),
+                    child: Text(title,
+                        style: textStyleJudul.copyWith(
+                            fontSize: 13 + addTextSize))),
               ),
             for (int i = 0; i < content.length; i++)
               Container(
@@ -44,12 +45,21 @@ class ItemWaterTankMonitordetail extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: (title == null)
                         ? textStyleButton.copyWith(
-                            color: fontColor, fontSize: fontSize ?? 15.0)
+                            color: fontColor,
+                            fontSize: (fontSize != null)
+                                ? fontSize + addTextSize
+                                : 15.0 + addTextSize)
                         : (isNeedBackground)
                             ? textStyleAngka.copyWith(
-                                color: fontColor, fontSize: fontSize ?? 15.0)
+                                color: fontColor,
+                                fontSize: (fontSize != null)
+                                    ? fontSize + addTextSize
+                                    : 15.0 + addTextSize)
                             : textStyleAngka.copyWith(
-                                color: fontColor, fontSize: fontSize ?? 20.0),
+                                color: fontColor,
+                                fontSize: (fontSize != null)
+                                    ? fontSize + addTextSize
+                                    : 20.0 + addTextSize),
                     maxLines: 2,
                   ),
                 ),

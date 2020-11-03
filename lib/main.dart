@@ -7,6 +7,7 @@ import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 import 'package:workmanager/workmanager.dart';
 import 'app/locator.dart';
 import 'models/user.dart';
@@ -27,6 +28,7 @@ Future<dynamic> backgroundMessageHandler(Map<String, dynamic> message) async {
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ThemeManager.initialise();
   await setupLocator();
   runApp(MyApp());
 }
@@ -87,11 +89,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    return MaterialApp(
-      //home: FireMonitorDetailView(), //if want ot test view
-      initialRoute: AR.Routes.wrapperViewRoute,
-      onGenerateRoute: AR.Router().onGenerateRoute,
-      navigatorKey: locator<NavigationService>().navigatorKey,
+    return ThemeBuilder(
+      defaultThemeMode: ThemeMode.light,
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        backgroundColor: Color(0xff121212),
+        accentColor: Colors.lightBlue,
+      ),
+      lightTheme: ThemeData(
+        brightness: Brightness.light,
+        backgroundColor: Colors.white,
+        accentColor: Colors.lightBlue,
+      ),
+      builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
+        darkTheme: darkTheme,
+        //home: FireMonitorDetailView(), //if want ot test view
+        initialRoute: AR.Routes.wrapperViewRoute,
+        onGenerateRoute: AR.Router().onGenerateRoute,
+        theme: regularTheme,
+        themeMode: themeMode,
+        navigatorKey: locator<NavigationService>().navigatorKey,
+      ),
     );
   }
 }

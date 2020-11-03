@@ -41,6 +41,7 @@ dependencies:
   flutter_spinkit : "^4.1.2+1"
   animations: ^1.1.1
   lottie: ^0.4.0+1
+  stacked_themes:
   #firebase
   firebase_auth : ^0.15.5+2
   cloud_firestore : ^0.13.4+2

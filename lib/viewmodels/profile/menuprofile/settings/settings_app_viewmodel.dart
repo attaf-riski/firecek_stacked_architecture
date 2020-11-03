@@ -5,10 +5,12 @@ import 'package:firecek_stacked_architecture/services/biometric_service.dart';
 import 'package:firecek_stacked_architecture/services/local_storage_service.dart';
 import 'package:firecek_stacked_architecture/services/secure_storage_service.dart';
 import 'package:firecek_stacked_architecture/shared/constant.dart';
-import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/account_settings_view.dart';
-import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/change_password_view.dart';
-import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/reset_password_view.dart';
-import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/security_settings_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/account_setting/account_settings_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/account_setting/change_password_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/account_setting/reset_password_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/appearance_setting/appearance_setting_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/appearance_setting/text_size_setting_view.dart';
+import 'package:firecek_stacked_architecture/ui/views/profile/menuprofil/settings/security_setting/security_settings_view.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -122,6 +124,18 @@ class SettingsAppViewModel extends BaseViewModel {
   //push to security settings
   pushToSecuritySettings() async {
     await _navigationService.navigateWithTransition(SecuritySettingsView(),
+        duration: fastDurationTransition, transition: 'rightToLeft');
+  }
+
+  //push to appearance setting
+  pushToAppearanceSettings() async {
+    await _navigationService.navigateWithTransition(AppearanceSettingsView(),
+        duration: fastDurationTransition, transition: 'rightToLeft');
+  }
+
+  //push to text size setting
+  pushToTextSizeSetting() async {
+    await _navigationService.navigateWithTransition(TextSizeSettingsView(),
         duration: fastDurationTransition, transition: 'rightToLeft');
   }
 }

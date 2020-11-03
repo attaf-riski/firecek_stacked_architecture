@@ -13,7 +13,9 @@ class FMBodyDetail extends StatelessWidget {
   final Function zoneNameChanged;
   final bool isNotificatationEnable;
   final Function deleteProduct, onOffNotif, history;
+  final double addTextSize;
   FMBodyDetail({
+    this.addTextSize = 0,
     this.history,
     this.onOffNotif,
     this.isNotificatationEnable,
@@ -44,6 +46,7 @@ class FMBodyDetail extends StatelessWidget {
                             Flexible(
                                 flex: 1,
                                 child: ZoneTile(
+                                  addTextSize: addTextSize,
                                   focusNode: zone1NameFocusNode,
                                   isWhiteColor: (fireMonitor.zone1 ||
                                           fireMonitor.zone1Fault)
@@ -66,6 +69,7 @@ class FMBodyDetail extends StatelessWidget {
                             Flexible(
                                 flex: 1,
                                 child: ZoneTile(
+                                  addTextSize: addTextSize,
                                   focusNode: zone2NameFocusNode,
                                   isWhiteColor: (fireMonitor.zone2 ||
                                           fireMonitor.zone2Fault)
@@ -99,6 +103,7 @@ class FMBodyDetail extends StatelessWidget {
                             Flexible(
                                 flex: 1,
                                 child: ZoneTile(
+                                  addTextSize: addTextSize,
                                   focusNode: zone3NameFocusNode,
                                   isWhiteColor: (fireMonitor.zone3 ||
                                           fireMonitor.zone3Fault)
@@ -121,6 +126,7 @@ class FMBodyDetail extends StatelessWidget {
                             Flexible(
                                 flex: 1,
                                 child: ZoneTile(
+                                  addTextSize: addTextSize,
                                   focusNode: zone4NameFocusNode,
                                   isWhiteColor: (fireMonitor.zone4 ||
                                           fireMonitor.zone4Fault)
@@ -159,6 +165,7 @@ class FMBodyDetail extends StatelessWidget {
                     Flexible(
                       flex: 1,
                       child: ZoneTile(
+                        addTextSize: addTextSize,
                         color: (fireMonitor.batteryFault)
                             ? Colors.red
                             : Colors.lightBlue,
@@ -176,6 +183,7 @@ class FMBodyDetail extends StatelessWidget {
                     Flexible(
                       flex: 1,
                       child: ZoneTile(
+                        addTextSize: addTextSize,
                         color: (fireMonitor.acFault)
                             ? Colors.red
                             : Colors.lightBlue,
@@ -196,6 +204,7 @@ class FMBodyDetail extends StatelessWidget {
                         backgroundColor:
                             isNotificatationEnable ? Colors.red : Colors.green,
                         child: ZoneTile(
+                          addTextSize: addTextSize,
                           title: 'HISTORY',
                           subtitle: '',
                         ),
@@ -211,6 +220,7 @@ class FMBodyDetail extends StatelessWidget {
                         backgroundColor:
                             isNotificatationEnable ? Colors.red : Colors.green,
                         child: ZoneTile(
+                            addTextSize: addTextSize,
                             color: Colors.transparent,
                             isWhiteColor: true,
                             title: isNotificatationEnable
@@ -228,6 +238,7 @@ class FMBodyDetail extends StatelessWidget {
                         borderRadiusValue: 15,
                         backgroundColor: Colors.red,
                         child: ZoneTile(
+                          addTextSize: addTextSize,
                           color: Colors.transparent,
                           isWhiteColor: true,
                           title: 'DELETE PRODUCT',

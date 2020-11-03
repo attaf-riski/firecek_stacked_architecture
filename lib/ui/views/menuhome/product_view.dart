@@ -1,6 +1,7 @@
 import 'package:firecek_stacked_architecture/shared/constant.dart';
 import 'package:firecek_stacked_architecture/shared/loading.dart';
 import 'package:firecek_stacked_architecture/shared/no_conn.dart';
+import 'package:firecek_stacked_architecture/shared/ui_helpers.dart';
 import 'package:firecek_stacked_architecture/ui/views/product/product_tile_view.dart';
 import 'package:firecek_stacked_architecture/ui/widgets/material_inkwell.dart';
 import 'package:firecek_stacked_architecture/viewmodels/menuhome/product_viewmodel.dart';
@@ -56,6 +57,7 @@ class ProductView extends StatelessWidget {
                           },
                           splashColor: Color(0xffbbdefa),
                         ),
+                        verticalSpaceMedium,
                         GridView.count(
                             childAspectRatio: 3 / 2.3,
                             shrinkWrap: true,
