@@ -12,3 +12,14 @@ Aplikasi ini dikembangkan dengan Flutter dengan metode MVVM arsitektur "stacked"
 ## Catatan Untuk Rilis
 1. Ganti isDebugMode True pada libs/viewmodels/menuhome/MyProduct_Viewmodel.dart baris ke-42 menjadi False
 
+## Technology I used for this
+- VS Code
+- NextJS
+- Netlify
+
+##
+Would you check this project for me 😄, https://belajar-portfolio.netlify.app
+
+## Any advice
+If You have some an advice for me just find me in this link
+https://linktr.ee/attafriski 
